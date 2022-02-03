@@ -71,6 +71,7 @@ function GameStart(context) {
 let [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
 document.addEventListener('keypress', (e) => {
   if (oppositeKey === e.key || oppositeKeyRus === e.key) return;
+  e.preventDefault();
   switch (e.key) {
     case 'w':
     case 'ц':
