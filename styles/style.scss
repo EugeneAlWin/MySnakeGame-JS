@@ -15,7 +15,9 @@ $pauseHeight: 380px;
   align-items: center;
   justify-content: center;
 }
-
+#counter_container {
+  @extend %flex-aljust-center;
+}
 #counter {
   font-size: 25pt;
 }
@@ -76,4 +78,8 @@ canvas {
       margin: 0;
     }
   }
+}
+
+#keys {
+  @extend %flex-aljust-center;
 }
