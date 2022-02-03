@@ -1,38 +1,43 @@
-let Snake = [
-  { posX: 120, posY: 0 },
-  { posX: 90, posY: 0 },
-  { posX: 60, posY: 0 },
-  { posX: 30, posY: 0 },
-  { posX: 0, posY: 0 },
-];
-function randMult(max, mult) {
-  return Math.floor(Math.random() * (max / mult)) * mult;
-}
-let Apple = {
-  posX: 0,
-  posY: 0,
-};
-let AppleX, AppleY;
-let dx = 30,
-  dy = 0;
-let prevX, prevY, curX, curY;
-let width = 30;
+import { Snake, Apple } from './AppleAndSnake.js';
+import drawApple from './drawApple.js';
+import Apple_HeadCollision from './AppleHeadCollision.js';
+
+//#Configs
+let interval = 200,
+  step = 30,
+  dx = step,
+  dy = 0,
+  prevX,
+  prevY,
+  curX,
+  curY,
+  gameWidth = 840,
+  gameHeight = 660,
+  cubeWidth = 30,
+  cubeHeight = 30;
+
 export default function GameStart(context) {
-  drawApple();
+  drawApple(context, Apple);
   setInterval(() => {
-    Snake.map((item, i) => {
-      context.clearRect(item.posX, item.posY, width, 30);
+    Snake.forEach((item, i) => {
+      context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
       if (i === 0) {
+        context.fillStyle = 'yellow';
+
+        if (item.posX > gameWidth) item.posX = 0;
+        if (item.posX < 0) item.posX = gameWidth;
+        if (item.posY > gameHeight) item.posY = 0;
+        if (item.posY < 0) item.posY = gameHeight;
         prevX = item.posX;
         prevY = item.posY;
         item.posX += dx;
         item.posY += dy;
-        if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY) {
-          Apple_HeadCollision(true);
-        }
-      } else {
         if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
-          drawApple();
+          Apple_HeadCollision(Snake, context);
+      } else {
+        context.fillStyle = 'red';
+        if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
+          drawApple(context, Apple);
         curX = item.posX;
         curY = item.posY;
         item.posX = prevX;
@@ -40,50 +45,41 @@ export default function GameStart(context) {
         prevX = curX;
         prevY = curY;
       }
-      context.fillRect(item.posX, item.posY, width, 30);
-    });
-  }, 300);
+      if (Snake[0].posX === item.posX && Snake[0].posY === item.posY && i !== 0)
+        console.log('Столкновение');
 
-  function Apple_HeadCollision() {
-    let len = Snake.length - 1;
-    Snake.push({
-      PosX: Snake[len].posX - 30,
-      PosY: Snake[len].posY,
+      context.fillRect(item.posX, item.posY, cubeWidth, cubeHeight);
     });
-    console.log(Snake);
-    drawApple();
-  }
-  function drawApple() {
-    context.fillRect(
-      (Apple.posX = randMult(840, 30)),
-      (Apple.posY = randMult(660, 30)),
-      30,
-      30
-    );
-  }
+  }, interval);
 }
-
+let [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
 document.addEventListener('keypress', (e) => {
+  if (oppositeKey === e.key || oppositeKeyRus === e.key) return;
   switch (e.key) {
     case 'w':
     case 'ц':
       dx = 0;
-      dy = -30;
+      dy = -step;
+      [oppositeKey, oppositeKeyRus] = ['s', 'ы'];
+      interval = 400;
       break;
     case 'a':
     case 'ф':
-      dx = -30;
+      dx = -step;
       dy = 0;
+      [oppositeKey, oppositeKeyRus] = ['d', 'в'];
       break;
     case 's':
     case 'ы':
       dx = 0;
-      dy = 30;
+      dy = step;
+      [oppositeKey, oppositeKeyRus] = ['w', 'ц'];
       break;
     case 'd':
     case 'в':
-      dx = 30;
+      dx = step;
       dy = 0;
+      [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
       break;
   }
 });
