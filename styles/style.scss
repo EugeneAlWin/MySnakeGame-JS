@@ -1,3 +1,79 @@
+$gameWidth: 840px;
+$gameHeight: 660px;
+$pauseWidth: 380px;
+$pauseHeight: 380px;
+%game-field {
+  width: $gameWidth;
+  height: $gameHeight;
+}
+%pause-field {
+  width: $pauseWidth;
+  height: $pauseHeight;
+}
+%flex-aljust-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #counter {
   font-size: 25pt;
+}
+#game_container {
+  @extend %game-field;
+  z-index: 2;
+  margin: auto;
+}
+canvas {
+  border: 1px solid black;
+  margin: auto;
+  background: green;
+  @extend %game-field;
+}
+@keyframes background_rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.pause_container {
+  display: none;
+  &.active {
+    position: absolute;
+    color: white;
+    @extend %flex-aljust-center;
+    @extend %game-field;
+    flex-direction: column;
+    background: #000;
+    opacity: 0.7;
+    font: {
+      size: 25pt;
+      family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    }
+
+    #img_container {
+      &::before {
+        content: ' ';
+        @extend %pause-field;
+        z-index: -1;
+        position: absolute;
+        background: white;
+        border-radius: 33%;
+        animation: background_rotation 12s infinite ease-in-out;
+      }
+    }
+    img {
+      @extend %pause-field;
+    }
+
+    p {
+      @extend %flex-aljust-center;
+      margin: 0;
+    }
+  }
 }

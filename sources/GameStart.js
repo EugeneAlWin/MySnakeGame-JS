@@ -1,7 +1,8 @@
 import { Snake, Apple } from './AppleAndSnake.js';
 import drawApple from './drawApple.js';
 import Apple_HeadCollision from './AppleHeadCollision.js';
-
+import { context } from '../index.js';
+import pause from './Pause.js';
 //#Configs
 let interval = 200,
   step = 30,
@@ -14,11 +15,25 @@ let interval = 200,
   gameWidth = 840,
   gameHeight = 660,
   cubeWidth = 30,
-  cubeHeight = 30;
+  cubeHeight = 30,
+  Movement,
+  isPaused = false;
+let classes = document.getElementById('pause_container').classList;
 
-export default function GameStart(context) {
-  drawApple(context, Apple);
-  setInterval(() => {
+export default function runGame() {
+  if (!isPaused) {
+    classes.add('active');
+    pause(Movement);
+    isPaused = true;
+  } else {
+    classes.remove('active');
+    GameStart(context);
+    isPaused = false;
+  }
+}
+
+function GameStart(context) {
+  Movement = setInterval(() => {
     Snake.forEach((item, i) => {
       context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
       if (i === 0) {
@@ -52,6 +67,7 @@ export default function GameStart(context) {
     });
   }, interval);
 }
+
 let [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
 document.addEventListener('keypress', (e) => {
   if (oppositeKey === e.key || oppositeKeyRus === e.key) return;
@@ -61,7 +77,6 @@ document.addEventListener('keypress', (e) => {
       dx = 0;
       dy = -step;
       [oppositeKey, oppositeKeyRus] = ['s', 'ы'];
-      interval = 400;
       break;
     case 'a':
     case 'ф':
@@ -80,6 +95,9 @@ document.addEventListener('keypress', (e) => {
       dx = step;
       dy = 0;
       [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
+      break;
+    case ' ':
+      runGame();
       break;
   }
 });

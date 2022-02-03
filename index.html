@@ -7,17 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body style="width: 100%">
+  <body>
     <div class="counter_container">
       <p id="counter">Счёт: 0</p>
     </div>
-    <div style="width: 100%; display: flex">
-      <canvas
-        id="canvas"
-        width="840"
-        height="660"
-        style="border: 1px solid black; margin: auto; background: green"
-      ></canvas>
+    <div id="game_container">
+      <div id="pause_container" class="pause_container active">
+        <div id="img_container"><img src="./img/Pause.svg" alt="" /></div>
+        <br />
+        <p>Игра на паузе</p>
+        <!-- <p>Смешная фраза?</p> -->
+      </div>
+      <canvas id="canvas" width="840" height="660"></canvas>
+      <br /><br /><br />
+      <div id="keys">
+        <p style="font-size: 20pt"><mark>"Пробел"</mark> - пауза/старт</p>
+      </div>
     </div>
     <script defer src="index.js" type="module"></script>
   </body>
