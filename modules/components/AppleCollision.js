@@ -1,4 +1,4 @@
-import drawApple from './DrawApple.js';
+import drawApple from './drawApple.js';
 import { increase } from './ChangeCounter.js';
 export default function AppleCollision(Snake, context) {
   let len = Snake.length - 1;
