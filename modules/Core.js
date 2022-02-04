@@ -1,5 +1,5 @@
 import { Snake, Apple, SnakeOnStart } from './components/AppleSnake-obj.js';
-import drawApple from './components/DrawApple.js';
+import drawApple from './components/drawApple.js';
 import AppleCollision from './components/AppleCollision.js';
 import { context, classes } from '../index.js';
 import pause from './components/Pause.js';
