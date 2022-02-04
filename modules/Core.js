@@ -1,23 +1,22 @@
-import { Snake, Apple, SnakeOnStart } from './AppleAndSnake.js';
-import drawApple from './drawApple.js';
-import Apple_HeadCollision, { decrease } from './AppleHeadCollision.js';
-import { context } from '../index.js';
-import pause from './Pause.js';
-
+import { Snake, Apple, SnakeOnStart } from './components/AppleSnake-obj.js';
+import drawApple from './components/DrawApple.js';
+import AppleCollision from './components/AppleCollision.js';
+import { context, classes } from '../index.js';
+import pause from './components/Pause.js';
+import { decrease } from './components/ChangeCounter.js';
 //#Configs
-let interval = 200,
-  step = 30,
-  dx = step,
-  dy = 0;
-let prevX, prevY, curX, curY;
-let gameWidth = 840,
+const gameWidth = 840,
   gameHeight = 660,
   cubeWidth = 30,
   cubeHeight = 30;
+const interval = 200,
+  step = 30;
+let dx = step,
+  dy = 0;
+let prevX, prevY, curX, curY;
 let Movement,
   isPaused = false;
 //#Configs
-let classes = document.getElementById('pause_container').classList;
 
 export default function runGame() {
   if (!isPaused) {
@@ -38,17 +37,16 @@ function GameStart(context) {
 
       if (i === 0) {
         context.fillStyle = 'yellow';
-
         prevX = item.posX;
         prevY = item.posY;
         item.posX += dx;
         item.posY += dy;
         if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
-          Apple_HeadCollision(Snake, context);
+          AppleCollision(Snake, context);
       } else {
         context.fillStyle = 'red';
         if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
-          drawApple(context, Apple);
+          drawApple(context);
         curX = item.posX;
         curY = item.posY;
         item.posX = prevX;
@@ -72,7 +70,7 @@ function GameStart(context) {
   }, interval);
 
   function Death(context) {
-    //Death required instead pause
+    //Death required instead оf pause
     pause(Movement);
     //isPaused = true;
     Snake.forEach((cube) => {
@@ -87,8 +85,8 @@ function GameStart(context) {
     runGame();
   }
 }
-let start;
 let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
+let start;
 document.addEventListener('keydown', (e) => {
   if (new Date() - start < interval) return;
 
