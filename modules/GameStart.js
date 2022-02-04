@@ -36,13 +36,10 @@ function GameStart(context) {
   Movement = setInterval(() => {
     Snake.forEach((item, i) => {
       context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
+
       if (i === 0) {
         context.fillStyle = 'yellow';
 
-        if (item.posX > gameWidth) item.posX = 0;
-        if (item.posX < 0) item.posX = gameWidth;
-        if (item.posY > gameHeight) item.posY = 0;
-        if (item.posY < 0) item.posY = gameHeight;
         prevX = item.posX;
         prevY = item.posY;
         item.posX += dx;
@@ -63,6 +60,14 @@ function GameStart(context) {
       if (Snake[0].posX === item.posX && Snake[0].posY === item.posY && i !== 0)
         console.log('Столкновение');
 
+      //Горизонталь
+      if (item.posX > gameWidth - cubeWidth) item.posX = 0;
+      if (item.posX < 0) item.posX = gameWidth - cubeWidth;
+
+      //Вертикаль
+      if (item.posY > gameHeight - cubeHeight) item.posY = 0;
+      if (item.posY < 0) item.posY = gameHeight - cubeHeight;
+
       context.fillRect(item.posX, item.posY, cubeWidth, cubeHeight);
     });
   }, interval);
@@ -71,7 +76,6 @@ function GameStart(context) {
 let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
 document.addEventListener('keydown', (e) => {
   const key = e.key.toLowerCase();
-  console.log(key);
   if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key)
     return;
 
