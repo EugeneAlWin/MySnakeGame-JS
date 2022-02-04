@@ -68,36 +68,49 @@ function GameStart(context) {
   }, interval);
 }
 
-let [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
-document.addEventListener('keypress', (e) => {
-  if (oppositeKey === e.key || oppositeKeyRus === e.key) return;
-  e.preventDefault();
-  switch (e.key) {
+let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toLowerCase();
+  console.log(key);
+  if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key)
+    return;
+
+  switch (key.toLowerCase()) {
     case 'w':
     case 'ц':
+    case 'arrowup':
+      e.preventDefault();
       dx = 0;
       dy = -step;
-      [oppositeKey, oppositeKeyRus] = ['s', 'ы'];
-      break;
-    case 'a':
-    case 'ф':
-      dx = -step;
-      dy = 0;
-      [oppositeKey, oppositeKeyRus] = ['d', 'в'];
+      [oppositeKey, oppositeKeyRus, oppositeArrow] = ['s', 'ы', 'arrowdown'];
       break;
     case 's':
     case 'ы':
+    case 'arrowdown':
+      e.preventDefault();
       dx = 0;
       dy = step;
-      [oppositeKey, oppositeKeyRus] = ['w', 'ц'];
+      [oppositeKey, oppositeKeyRus, oppositeArrow] = ['w', 'ц', 'arrowup'];
+      break;
+    case 'a':
+    case 'ф':
+    case 'arrowleft':
+      e.preventDefault();
+      dx = -step;
+      dy = 0;
+      [oppositeKey, oppositeKeyRus, oppositeArrow] = ['d', 'в', 'arrowright'];
       break;
     case 'd':
     case 'в':
+    case 'arrowright':
+      e.preventDefault();
       dx = step;
       dy = 0;
-      [oppositeKey, oppositeKeyRus] = ['a', 'ф'];
+      [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
       break;
+
     case ' ':
+      e.preventDefault();
       runGame();
       break;
   }
