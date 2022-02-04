@@ -20,8 +20,24 @@
           justify-content: center;
 }
 
-#counter {
+#counter_container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+
+#counter_container #counter {
+  margin-top: 10px;
   font-size: 25pt;
+  margin-bottom: 15px;
+}
+
+#counter_container #prev_counter {
+  height: 28px;
+  font-size: 18pt;
+  margin: 0;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 #game_container {
@@ -41,8 +57,8 @@ canvas {
             transform: rotate(0deg);
   }
   50% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: rotate(1080deg);
+            transform: rotate(1080deg);
   }
   100% {
     -webkit-transform: rotate(0deg);
@@ -56,8 +72,8 @@ canvas {
             transform: rotate(0deg);
   }
   50% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    -webkit-transform: rotate(1080deg);
+            transform: rotate(1080deg);
   }
   100% {
     -webkit-transform: rotate(0deg);
@@ -88,8 +104,8 @@ canvas {
   position: absolute;
   background: white;
   border-radius: 33%;
-  -webkit-animation: background_rotation 12s infinite ease-in-out;
-          animation: background_rotation 12s infinite ease-in-out;
+  -webkit-animation: background_rotation 35s infinite ease-in-out;
+          animation: background_rotation 35s infinite ease-in-out;
 }
 
 .pause_container.active p {

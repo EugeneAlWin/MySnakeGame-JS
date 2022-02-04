@@ -17,9 +17,19 @@ $pauseHeight: 380px;
 }
 #counter_container {
   @extend %flex-aljust-center;
-}
-#counter {
-  font-size: 25pt;
+  flex-flow: column;
+
+  #counter {
+    margin-top: 10px;
+    font-size: 25pt;
+    margin-bottom: 15px;
+  }
+  #prev_counter {
+    height: 28px;
+    font-size: 18pt;
+    margin: 0;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  }
 }
 #game_container {
   @extend %game-field;
@@ -37,7 +47,7 @@ canvas {
     transform: rotate(0deg);
   }
   50% {
-    transform: rotate(360deg);
+    transform: rotate(1080deg);
   }
   100% {
     transform: rotate(0deg);
@@ -66,7 +76,7 @@ canvas {
         position: absolute;
         background: white;
         border-radius: 33%;
-        animation: background_rotation 12s infinite ease-in-out;
+        animation: background_rotation 35s infinite ease-in-out;
       }
     }
     img {
