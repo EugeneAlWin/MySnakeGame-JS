@@ -4,6 +4,7 @@ import AppleCollision from './components/AppleCollision.js';
 import { context, classes, deathClasses } from '../index.js';
 import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
+import phraseGenerator from './components/Phrase.js';
 //#Configs
 const gameWidth = 840,
   gameHeight = 660,
@@ -32,7 +33,6 @@ export default function runGame() {
 
 function GameStart(context) {
   Movement = setInterval(() => {
-    console.log(interval);
     Snake.forEach((item, i) => {
       context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
 
@@ -73,6 +73,8 @@ function GameStart(context) {
 function Death(context) {
   clearInterval(Movement);
   deathClasses.add('active');
+
+  phraseGenerator();
   Snake.forEach((cube) => {
     context.clearRect(cube.posX, cube.posY, cubeWidth, cubeHeight);
   });

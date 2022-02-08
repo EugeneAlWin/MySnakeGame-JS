@@ -7,7 +7,7 @@ let classes = document.getElementById('pause_container').classList,
 const count_container = document.getElementById('counter'),
   prev_count_container = document.getElementById('prev_counter'),
   last_count = document.getElementById('last_count');
-
+const phrase = document.querySelectorAll('.phrase');
 document.getElementById('pause_container').addEventListener('click', runGame);
 
 export {
@@ -17,5 +17,6 @@ export {
   count_container,
   prev_count_container,
   last_count,
+  phrase,
 };
 runGame();
