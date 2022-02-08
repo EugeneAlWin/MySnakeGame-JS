@@ -1,7 +1,7 @@
 import { Snake, Apple, SnakeOnStart } from './components/AppleSnake-obj.js';
 import drawApple from './components/drawApple.js';
 import AppleCollision from './components/AppleCollision.js';
-import { context, classes } from '../index.js';
+import { context, classes, deathClasses } from '../index.js';
 import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
 //#Configs
@@ -32,6 +32,7 @@ export default function runGame() {
 
 function GameStart(context) {
   Movement = setInterval(() => {
+    console.log(interval);
     Snake.forEach((item, i) => {
       context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
 
@@ -55,10 +56,10 @@ function GameStart(context) {
         prevY = curY;
       }
 
-      //Горизонталь
+      // -
       item.posX > gameWidth - cubeWidth && (item.posX = 0);
       item.posX < 0 && (item.posX = gameWidth - cubeWidth);
-      //Вертикаль
+      // |
       item.posY > gameHeight - cubeHeight && (item.posY = 0);
       item.posY < 0 && (item.posY = gameHeight - cubeHeight);
 
@@ -68,28 +69,24 @@ function GameStart(context) {
         Death(context);
     });
   }, interval);
-
-  function Death(context) {
-    //Death required instead оf pause
-    pause(Movement);
-    //isPaused = true;
-    Snake.forEach((cube) => {
-      context.clearRect(cube.posX, cube.posY, cubeWidth, cubeHeight);
-    });
-    Snake.splice(0, Snake.length);
-    Snake.push(...JSON.parse(SnakeOnStart));
-    dx = step;
-    dy = 0;
-    [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
-    decrease();
-    runGame();
-  }
+}
+function Death(context) {
+  clearInterval(Movement);
+  deathClasses.add('active');
+  Snake.forEach((cube) => {
+    context.clearRect(cube.posX, cube.posY, cubeWidth, cubeHeight);
+  });
+  Snake.splice(0, Snake.length);
+  Snake.push(...JSON.parse(SnakeOnStart));
+  dx = step;
+  dy = 0;
+  [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
+  decrease();
 }
 let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
 let start;
 document.addEventListener('keydown', (e) => {
   if (new Date() - start < interval) return;
-
   const key = e.key.toLowerCase();
   if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key)
     return;
@@ -129,6 +126,10 @@ document.addEventListener('keydown', (e) => {
 
     case ' ':
       e.preventDefault();
+      if (deathClasses.contains('active')) {
+        deathClasses.remove('active');
+        isPaused = true;
+      }
       runGame();
       break;
   }

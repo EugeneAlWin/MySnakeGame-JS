@@ -4,31 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="shortcut icon" href="./img/Snake.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Snake JS</title>
   </head>
   <body>
+    <script defer src="index.js" type="module"></script>
     <div id="counter_container">
       <p id="counter">Счёт: 0</p>
       <p id="prev_counter"></p>
     </div>
     <div id="game_container">
-      <div id="pause_container" class="pause_container active">
-        <div id="img_container"><img src="./img/Pause.svg" alt="" /></div>
+      <div id="pause_container" class="pause_container">
+        <div class="img_container">
+          <img src="./img/Pause.svg" alt="Pause" />
+        </div>
         <br />
         <p>Игра на паузе</p>
+        <!-- <p>Смешная фраза?</p> -->
+      </div>
+      <div id="death_container" class="death_container">
+        <div class="img_container">
+          <img src="./img/Play.svg" alt="Play" />
+        </div>
+        <br />
+        <p id="last_count" style="text-align: center"></p>
         <!-- <p>Смешная фраза?</p> -->
       </div>
       <canvas id="canvas" width="840" height="660"></canvas>
       <br /><br /><br />
       <div id="keys">
         <p style="font-size: 20pt">
-          <mark><q>Пробел</q></mark> - пауза/старт <br />
+          <mark><q>Пробел</q></mark> - пауза/старт, <br />
           <mark><q>w a s d</q> </mark> или
-          <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление
+          <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление.
         </p>
       </div>
     </div>
-    <script defer src="index.js" type="module"></script>
   </body>
 </html>

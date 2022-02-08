@@ -1,4 +1,8 @@
-import { count_container, prev_count_container } from '../../index.js';
+import {
+  count_container,
+  prev_count_container,
+  last_count,
+} from '../../index.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   BestCount = +localStorage.getItem('prev');
@@ -8,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let count = 0,
   BestCount = 0;
+
 export function increase() {
   count++;
   count_container.innerText = `Счёт: ${count}`;
@@ -18,8 +23,8 @@ export function decrease() {
     BestCount = count;
     localStorage.setItem('prev', BestCount.toString());
   }
+  last_count.innerText = `Игра окончена! Ваш счёт: ${count} \n Нажмите "Пробел", чтобы начать сначала.`;
   count = 0;
-
   count_container.innerText = `Счёт: ${count}`;
   prev_count_container.innerText = `Лучший счёт: ${BestCount}`;
 }
