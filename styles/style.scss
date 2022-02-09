@@ -1,7 +1,7 @@
 $gameWidth: 840px;
 $gameHeight: 660px;
-$pauseWidth: 380px;
-$pauseHeight: 380px;
+$pauseWidth: 320px;
+$pauseHeight: 320px;
 %game-field {
   width: $gameWidth;
   height: $gameHeight;
@@ -64,7 +64,7 @@ canvas {
     flex-direction: column;
     background: #000;
     opacity: 0.7;
-    cursor: pointer;
+    //cursor: pointer;
     font: {
       size: 25pt;
       family: Arial, 'Helvetica Neue', Helvetica, sans-serif;

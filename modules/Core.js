@@ -5,6 +5,7 @@ import { context, classes, deathClasses } from '../index.js';
 import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
 import phraseGenerator from './components/Phrase.js';
+import playSound from './components/playSound.js';
 //#Configs
 const gameWidth = 840,
   gameHeight = 660,
@@ -17,6 +18,8 @@ let dx = step,
 let prevX, prevY, curX, curY;
 let Movement,
   isPaused = false;
+const EventSound = new Audio();
+EventSound.src = '../resources/sounds/Event.mp3';
 //#Configs
 
 export default function runGame() {
@@ -135,5 +138,6 @@ document.addEventListener('keydown', (e) => {
       runGame();
       break;
   }
+  playSound(EventSound);
   start = new Date();
 });

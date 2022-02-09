@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="shortcut icon" href="./img/Snake.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./resources/img/Snake.ico"
+      type="image/x-icon"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake JS</title>
   </head>
@@ -17,26 +21,28 @@
     <div id="game_container">
       <div id="pause_container" class="pause_container">
         <div class="img_container">
-          <img src="./img/Pause.svg" alt="Pause" />
+          <img src="./resources/img/Pause.svg" alt="Pause" />
         </div>
         <br />
         <p>Игра на паузе</p>
         <br />
-        <p class="phrase" style="font-size: 15pt"></p>
+        <p class="phrase" style="font-size: 13pt"></p>
       </div>
       <div id="death_container" class="death_container">
         <div class="img_container">
-          <img src="./img/Play.svg" alt="Play" />
+          <img src="./resources/img/Play.svg" alt="Play" />
         </div>
         <br />
         <p id="last_count" style="text-align: center"></p>
         <br />
-        <p class="phrase" style="font-size: 15pt"></p>
+        <p class="phrase" style="font-size: 13pt"></p>
       </div>
       <canvas id="canvas" width="840" height="660"></canvas>
       <br /><br /><br />
       <div id="keys">
         <p style="font-size: 20pt">
+          <input type="checkbox" name="sound" id="sound_toggle" checked />
+          &nbsp; Включить звуки <br />
           <mark><q>Пробел</q></mark> - пауза/старт, <br />
           <mark><q>w a s d</q> </mark> или
           <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление.

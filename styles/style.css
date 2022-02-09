@@ -7,8 +7,8 @@
 .pause_container.active .img_container::before,
 .death_container.active .img_container::before, .pause_container.active img,
 .death_container.active img {
-  width: 380px;
-  height: 380px;
+  width: 320px;
+  height: 320px;
 }
 
 #counter_container, .pause_container.active,
@@ -101,7 +101,6 @@ canvas {
           flex-direction: column;
   background: #000;
   opacity: 0.7;
-  cursor: pointer;
   font-size: 25pt;
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
