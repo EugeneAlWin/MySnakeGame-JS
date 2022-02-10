@@ -45,6 +45,12 @@ function GameStart(context) {
         prevY = item.posY;
         item.posX += dx;
         item.posY += dy;
+        // -
+        item.posX > gameWidth - cubeWidth && (item.posX = 0);
+        item.posX < 0 && (item.posX = gameWidth - cubeWidth);
+        // |
+        item.posY > gameHeight - cubeHeight && (item.posY = 0);
+        item.posY < 0 && (item.posY = gameHeight - cubeHeight);
         if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
           AppleCollision(Snake, context);
       } else {
@@ -58,13 +64,6 @@ function GameStart(context) {
         prevX = curX;
         prevY = curY;
       }
-
-      // -
-      item.posX > gameWidth - cubeWidth && (item.posX = 0);
-      item.posX < 0 && (item.posX = gameWidth - cubeWidth);
-      // |
-      item.posY > gameHeight - cubeHeight && (item.posY = 0);
-      item.posY < 0 && (item.posY = gameHeight - cubeHeight);
 
       context.fillRect(item.posX, item.posY, cubeWidth, cubeHeight);
 

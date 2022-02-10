@@ -12,4 +12,22 @@ export default function drawApple(context) {
     30,
     30
   );
+  // let x = randMult(840, 30);
+  // let y = randMult(660, 30);
+
+  // // the triangle
+  // context.beginPath();
+
+  // context.moveTo(x + 14.5, y);
+  // context.lineTo(x, y + 29);
+  // context.lineTo(x + 29, y + 29);
+  // context.closePath();
+
+  // // the outline
+  // context.strokeStyle = '#666666';
+  // context.stroke();
+
+  // // the fill color
+  // context.fillStyle = '#FFCC00';
+  // context.fill();
 }
