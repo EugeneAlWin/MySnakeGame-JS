@@ -20,6 +20,8 @@ let Movement,
   isPaused = false;
 const EventSound = new Audio();
 EventSound.src = '../resources/sounds/Event.mp3';
+
+export { gameWidth, gameHeight, cubeWidth, cubeHeight };
 //#Configs
 
 export default function runGame() {
@@ -51,12 +53,10 @@ function GameStart(context) {
         // |
         item.posY > gameHeight - cubeHeight && (item.posY = 0);
         item.posY < 0 && (item.posY = gameHeight - cubeHeight);
-        if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
-          AppleCollision(Snake, context);
       } else {
-        context.fillStyle = 'red';
         if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
           drawApple(context);
+        context.fillStyle = 'red';
         curX = item.posX;
         curY = item.posY;
         item.posX = prevX;
@@ -66,7 +66,8 @@ function GameStart(context) {
       }
 
       context.fillRect(item.posX, item.posY, cubeWidth, cubeHeight);
-
+      if (Snake[0].posX === Apple.posX && Snake[0].posY == Apple.posY)
+        AppleCollision(Snake, context);
       if (Snake[0].posX === item.posX && Snake[0].posY === item.posY && i !== 0)
         Death(context);
     });
@@ -90,7 +91,7 @@ function Death(context) {
 let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
 let start;
 document.addEventListener('keydown', (e) => {
-  if (new Date() - start < interval) return;
+  if (new Date() - start < interval - 55) return;
   const key = e.key.toLowerCase();
   if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key)
     return;
