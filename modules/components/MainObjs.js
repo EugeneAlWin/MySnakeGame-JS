@@ -8,5 +8,6 @@ let Apple = {
   posX: 0,
   posY: 0,
 };
+let Thorns = [];
 
-export { Snake, Apple, SnakeOnStart };
+export { Snake, Apple, SnakeOnStart, Thorns };

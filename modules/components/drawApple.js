@@ -1,7 +1,7 @@
 import { cubeHeight, cubeWidth, gameHeight, gameWidth } from '../Core.js';
-import { Apple } from './AppleSnake-obj.js';
+import { Apple } from './MainObjs.js';
 import { getRandomInt } from './GetRandomInt.js';
-
+import { Thorns } from './MainObjs.js';
 const colors = [
   { color: 'red' },
   { color: 'orange' },
@@ -10,7 +10,7 @@ const colors = [
   { color: 'pink' },
 ];
 
-function randMult(max, mult) {
+export function randMult(max, mult) {
   return Math.floor(Math.random() * (max / mult)) * mult;
 }
 
@@ -22,22 +22,7 @@ export default function drawApple(context) {
     cubeWidth,
     cubeHeight
   );
-  // let x = randMult(840, 30);
-  // let y = randMult(660, 30);
-
-  // // the triangle
-  // context.beginPath();
-
-  // context.moveTo(x + 14.5, y);
-  // context.lineTo(x, y + 29);
-  // context.lineTo(x + 29, y + 29);
-  // context.closePath();
-
-  // // the outline
-  // context.strokeStyle = '#666666';
-  // context.stroke();
-
-  // // the fill color
-  // context.fillStyle = '#FFCC00';
-  // context.fill();
+  Thorns.forEach((item) => {
+    if (item.X === Apple.posX && item.Y === Apple.posY) drawApple();
+  });
 }

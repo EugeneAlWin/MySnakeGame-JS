@@ -1,4 +1,4 @@
-import { Snake, Apple, SnakeOnStart } from './components/AppleSnake-obj.js';
+import { Snake, Apple, SnakeOnStart, Thorns } from './components/MainObjs.js';
 import drawApple from './components/drawApple.js';
 import AppleCollision from './components/AppleCollision.js';
 import { context, classes, deathClasses } from '../index.js';
@@ -6,6 +6,7 @@ import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
 import phraseGenerator from './components/Phrase.js';
 import playSound from './components/playSound.js';
+import DrawThorns from './components/DrawThorn.js';
 //#Configs
 const gameWidth = 840,
   gameHeight = 660,
@@ -17,7 +18,8 @@ let dx = step,
   dy = 0;
 let prevX, prevY, curX, curY;
 let Movement,
-  isPaused = false;
+  isPaused = false,
+  isThorns = false;
 const EventSound = new Audio();
 EventSound.src = '../resources/sounds/Event.mp3';
 
@@ -37,6 +39,8 @@ export default function runGame() {
 }
 
 function GameStart(context) {
+  DrawThorns(context, isThorns);
+  isThorns = true;
   Movement = setInterval(() => {
     Snake.forEach((item, i) => {
       context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
@@ -70,18 +74,26 @@ function GameStart(context) {
         AppleCollision(Snake, context);
       if (Snake[0].posX === item.posX && Snake[0].posY === item.posY && i !== 0)
         Death(context);
+      Thorns.forEach((item) => {
+        if (Snake[0].posX === item.X && Snake[0].posY === item.Y)
+          Death(context);
+      });
     });
   }, interval);
 }
 function Death(context) {
   clearInterval(Movement);
   deathClasses.add('active');
-
+  isThorns = false;
   phraseGenerator();
-  Snake.forEach((cube) => {
+  Snake.map(async (cube) => {
     context.clearRect(cube.posX, cube.posY, cubeWidth, cubeHeight);
   });
-  Snake.splice(0, Snake.length);
+  Thorns.map(async (cube) =>
+    context.clearRect(cube.X, cube.Y, cubeWidth, cubeHeight)
+  );
+  Snake.splice(0);
+  Thorns.splice(0);
   Snake.push(...JSON.parse(SnakeOnStart));
   dx = step;
   dy = 0;

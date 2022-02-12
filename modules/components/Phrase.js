@@ -9,6 +9,8 @@ const phrases = [
   { text: `В этой жизни ты либо волк, либо не волк` },
   { text: `Враги не предают, предают враги` },
   { text: `Я редко когда думаю, а ещё реже думаю` },
+  { text: 'Ауф' },
+  { text: 'Папей чаю' },
 ];
 export default function phraseGenerator() {
   phrase.forEach(
