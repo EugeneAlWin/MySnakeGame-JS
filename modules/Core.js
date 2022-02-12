@@ -91,7 +91,7 @@ function Death(context) {
 let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
 let start;
 document.addEventListener('keydown', (e) => {
-  if (new Date() - start < interval - 55) return;
+  if (new Date() - start < interval - 20) return;
   const key = e.key.toLowerCase();
   if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key)
     return;
