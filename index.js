@@ -10,6 +10,19 @@ const count_container = document.getElementById('counter'),
 const phrase = document.querySelectorAll('.phrase');
 document.getElementById('pause_container').addEventListener('click', runGame);
 
+let radios = document.forms[0].a;
+let snakeColor = {
+  body: `rgb(${radios[0].value},${radios[1].value},${radios[2].value})`,
+  head: 'yellow',
+};
+radios.forEach((element) => {
+  element.addEventListener('input', () => {
+    snakeColor.body = `rgb(${radios[0].value},${radios[1].value},${radios[2].value})`;
+    snakeColor.head = `rgb(${255 - radios[0].value},${255 - radios[1].value},${
+      255 - radios[2].value
+    })`;
+  });
+});
 export {
   context,
   classes,
@@ -18,5 +31,7 @@ export {
   prev_count_container,
   last_count,
   phrase,
+  snakeColor,
 };
+//console.log(obj.A);
 runGame();

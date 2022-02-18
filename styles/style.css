@@ -53,7 +53,8 @@
 canvas {
   border: 1px solid black;
   margin: auto;
-  background: green;
+  background: url(../resources/img/555555.jpg);
+  background-size: cover;
 }
 
 @-webkit-keyframes background_rotation {

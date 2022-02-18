@@ -1,7 +1,7 @@
 import { Snake, Apple, SnakeOnStart, Thorns } from './components/MainObjs.js';
 import drawApple from './components/drawApple.js';
 import AppleCollision from './components/AppleCollision.js';
-import { context, classes, deathClasses } from '../index.js';
+import { context, classes, deathClasses, snakeColor } from '../index.js';
 import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
 import phraseGenerator from './components/Phrase.js';
@@ -27,6 +27,8 @@ export { gameWidth, gameHeight, cubeWidth, cubeHeight };
 //#Configs
 
 export default function runGame() {
+  // obj.A = 1;
+  // console.log(obj.A);
   if (!isPaused) {
     classes.add('active');
     pause(Movement);
@@ -46,7 +48,7 @@ function GameStart(context) {
       context.clearRect(item.posX, item.posY, cubeWidth, cubeHeight);
 
       if (i === 0) {
-        context.fillStyle = 'yellow';
+        context.fillStyle = snakeColor.head;
         prevX = item.posX;
         prevY = item.posY;
         item.posX += dx;
@@ -60,7 +62,7 @@ function GameStart(context) {
       } else {
         if (Snake[i].posX === Apple.posX && Snake[i].posY == Apple.posY)
           drawApple(context);
-        context.fillStyle = 'red';
+        context.fillStyle = snakeColor.body;
         curX = item.posX;
         curY = item.posY;
         item.posX = prevX;
@@ -103,10 +105,15 @@ function Death(context) {
 let [oppositeKey, oppositeKeyRus, oppositeArrow] = ['a', 'ф', 'arrowleft'];
 let start;
 document.addEventListener('keydown', (e) => {
-  if (new Date() - start < interval - 20) return;
   const key = e.key.toLowerCase();
-  if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key)
+  if (new Date() - start < interval - 20) {
+    e.preventDefault();
     return;
+  }
+  if (oppositeKey === key || oppositeKeyRus === key || oppositeArrow === key) {
+    e.preventDefault();
+    return;
+  }
   switch (key) {
     case 'w':
     case 'ц':

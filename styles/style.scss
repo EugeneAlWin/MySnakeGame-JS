@@ -39,7 +39,8 @@ $pauseHeight: 320px;
 canvas {
   border: 1px solid black;
   margin: auto;
-  background: green;
+  background: url(../resources/img/555555.jpg);
+  background-size: cover;
   @extend %game-field;
 }
 @keyframes background_rotation {
