@@ -30,32 +30,38 @@
           Включить звуки &nbsp;
           <div id="sound_toggle" class="switch-btn switch-on"></div>
         </div>
-        <form name="switcher">
-          <input
-            type="range"
-            min="0"
-            max="255"
-            name="a"
-            class="tmbs"
-            value="240"
-          />
-          <input
-            type="range"
-            min="0"
-            max="255"
-            name="a"
-            class="tmbs"
-            value="0"
-          />
-          <input
-            type="range"
-            min="0"
-            max="255"
-            name="a"
-            class="tmbs"
-            value="0"
-          />
-        </form>
+        <div style="margin-top: 3%">
+          <div class="prop">
+            <span>Выбрать цвет </span><mark class="plus">+</mark>
+          </div>
+
+          <form name="switcher" class="a active">
+            <input
+              type="range"
+              min="0"
+              max="255"
+              name="a"
+              class="tmbs"
+              value="240"
+            />
+            <input
+              type="range"
+              min="0"
+              max="255"
+              name="a"
+              class="tmbs"
+              value="0"
+            />
+            <input
+              type="range"
+              min="0"
+              max="255"
+              name="a"
+              class="tmbs"
+              value="0"
+            />
+          </form>
+        </div>
       </div>
       <div class="flex_center">
         <div id="game_container">
@@ -82,12 +88,12 @@
         </div>
       </div>
       <div id="keys" class="flex_right">
-        <div style="font-size: 20pt">
-          <div>Квадраты кушоть, треугольники не кушоть!</div>
-
-          <mark><q>Пробел</q></mark> - пауза/старт, <br />
-          <mark><q>w a s d</q> </mark> или
-          <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление.
+        <div style="font-size: 20pt; text-align: left">
+          <div>&nbsp;Квадраты кушоть, треугольники не кушоть!</div>
+          &nbsp; <mark><q>Пробел</q></mark> - пауза/старт, <br />
+          &nbsp; <mark><q>w a s d</q> </mark> или
+          <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление. <br />
+          &nbsp; <mark> <q>J</q></mark> - вкл./выкл. звук
         </div>
       </div>
     </div>

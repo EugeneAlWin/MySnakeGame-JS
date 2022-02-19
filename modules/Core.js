@@ -5,7 +5,7 @@ import { context, classes, deathClasses, snakeColor } from '../index.js';
 import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
 import phraseGenerator from './components/Phrase.js';
-import playSound from './components/playSound.js';
+import playSound, { toggleSound } from './components/playSound.js';
 import DrawThorns from './components/DrawThorn.js';
 //#Configs
 const gameWidth = 840,
@@ -115,6 +115,10 @@ document.addEventListener('keydown', (e) => {
     return;
   }
   switch (key) {
+    case 'j':
+    case 'о':
+      toggleSound();
+      break;
     case 'w':
     case 'ц':
     case 'arrowup':
