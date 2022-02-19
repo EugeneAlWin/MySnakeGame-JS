@@ -15,7 +15,7 @@ export function randMult(max, mult) {
 }
 
 export default function drawApple(context) {
-  context.fillStyle = colors[getRandomInt(colors.length)].color;
+  context.fillStyle = colors[getRandomInt(colors.length - 1)].color;
   context.fillRect(
     (Apple.posX = randMult(gameWidth, cubeWidth)),
     (Apple.posY = randMult(gameHeight, cubeHeight)),
@@ -23,6 +23,6 @@ export default function drawApple(context) {
     cubeHeight
   );
   Thorns.forEach((item) => {
-    if (item.X === Apple.posX && item.Y === Apple.posY) drawApple();
+    if (item.X === Apple.posX && item.Y === Apple.posY) drawApple(context);
   });
 }

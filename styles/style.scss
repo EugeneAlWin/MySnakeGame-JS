@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 $gameWidth: 840px;
 $gameHeight: 660px;
 $pauseWidth: 320px;
@@ -15,6 +16,29 @@ $pauseHeight: 320px;
   align-items: center;
   justify-content: center;
 }
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #3d3434;
+  color: #ead8d8;
+}
+header {
+  @extend %flex-aljust-center;
+}
+#logo {
+  position: absolute;
+  left: 3%;
+  background: #7a7171;
+  color: #f38282;
+  font-size: 26pt;
+  height: 60px;
+  width: 300px;
+  border-radius: 19px;
+  @extend %flex-aljust-center;
+}
+
 #counter_container {
   @extend %flex-aljust-center;
   flex-flow: column;
@@ -61,7 +85,8 @@ canvas {
     position: absolute;
     color: white;
     @extend %flex-aljust-center;
-    @extend %game-field;
+    width: $gameWidth + 1;
+    height: $gameHeight + 1;
     flex-direction: column;
     background: #000;
     opacity: 0.7;
@@ -93,5 +118,102 @@ canvas {
   }
 }
 #keys {
+  text-align: center;
+  div {
+    width: 90%;
+  }
+}
+.tmbs {
+  -webkit-appearance: none;
+  margin: 10% auto;
+  width: 90%;
+  &::-webkit-slider-runnable-track {
+    height: 12px;
+    cursor: pointer;
+  }
+  &::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000;
+    border: 1px solid #000;
+    height: 35px;
+    width: 15px;
+    border-radius: 40%/60%;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
+  }
+  &:nth-child(1)::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(255, 0, 0));
+  }
+  &:nth-child(2)::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 255, 0));
+  }
+  &:nth-child(3)::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 255));
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  vertical-align: top;
+
+  .flex_center {
+    width: $gameWidth;
+  }
+  .flex_left {
+    flex: 1;
+  }
+  .flex_right {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+}
+form {
+  width: 90%;
+  margin: auto;
+  flex-flow: wrap;
   @extend %flex-aljust-center;
+}
+
+#sound_container {
+  font-size: 22pt;
+  width: 90%;
+  text-align: left;
+  justify-content: space-evenly;
+  @extend %flex-aljust-center;
+}
+.switch-btn {
+  display: inline-block;
+  width: 72px; /* ширина */
+  height: 38px; /* высота */
+  border-radius: 19px; /* радиус скругления */
+  background: #bfbfbf; /* цвет фона */
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 300ms; /* анимация */
+  &::after {
+    content: '';
+    height: 32px; /* высота кнопки */
+    width: 32px; /* ширина кнопки */
+    border-radius: 17px;
+    background: #fff; /* цвет кнопки */
+    top: 3px; /* положение кнопки по вертикали относительно основы */
+    left: 3px; /* положение кнопки по горизонтали относительно основы */
+    transition-duration: 300ms; /* анимация */
+    position: absolute;
+    z-index: 1;
+  }
+}
+.switch-on {
+  background: #118c4e;
+  &::after {
+    left: 37px;
+  }
 }

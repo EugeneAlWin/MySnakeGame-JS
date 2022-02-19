@@ -11,76 +11,80 @@
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snake JS</title>
-    <style>
-      .tmbs {
-        -webkit-appearance: none;
-        margin: 50px;
-        width: 20%;
-      }
-      .tmbs::-webkit-slider-runnable-track {
-        height: 12px;
-        cursor: pointer;
-      }
-      .tmbs::-webkit-slider-thumb {
-        box-shadow: 1px 1px 1px #000;
-        border: 1px solid #000;
-        height: 35px;
-        width: 15px;
-        border-radius: 40%/60%;
-        background: #ffffff;
-        cursor: pointer;
-        -webkit-appearance: none;
-        margin-top: -14px;
-      }
-      .tmbs:nth-child(1)::-webkit-slider-runnable-track {
-        background: linear-gradient(90deg, rgb(0, 0, 0), rgb(255, 0, 0));
-      }
-      .tmbs:nth-child(2)::-webkit-slider-runnable-track {
-        background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 255, 0));
-      }
-      .tmbs:nth-child(3)::-webkit-slider-runnable-track {
-        background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 255));
-      }
-    </style>
+    <style></style>
   </head>
   <body>
+    <header>
+      <div id="logo">
+        <p>Snake Game JS</p>
+      </div>
+      <div id="counter_container">
+        <p id="counter">Счёт: 0</p>
+        <p id="prev_counter"></p>
+      </div>
+    </header>
     <script defer src="index.js" type="module"></script>
-    <form name="switcher">
-      <input type="range" min="0" max="255" name="a" class="tmbs" value="240" />
-      <input type="range" min="0" max="255" name="a" class="tmbs" value="0" />
-      <input type="range" min="0" max="255" name="a" class="tmbs" value="0" />
-    </form>
-
-    <div id="counter_container">
-      <p id="counter">Счёт: 0</p>
-      <p id="prev_counter"></p>
-    </div>
-    <div id="game_container">
-      <div id="pause_container" class="pause_container">
-        <div class="img_container">
-          <img src="./resources/img/Pause.svg" alt="Pause" />
+    <div class="flex">
+      <div class="flex_left">
+        <div id="sound_container">
+          Включить звуки &nbsp;
+          <div id="sound_toggle" class="switch-btn switch-on"></div>
         </div>
-        <br />
-        <p>Игра на паузе</p>
-        <br />
-        <p class="phrase" style="font-size: 13pt"></p>
+        <form name="switcher">
+          <input
+            type="range"
+            min="0"
+            max="255"
+            name="a"
+            class="tmbs"
+            value="240"
+          />
+          <input
+            type="range"
+            min="0"
+            max="255"
+            name="a"
+            class="tmbs"
+            value="0"
+          />
+          <input
+            type="range"
+            min="0"
+            max="255"
+            name="a"
+            class="tmbs"
+            value="0"
+          />
+        </form>
       </div>
-      <div id="death_container" class="death_container">
-        <div class="img_container">
-          <img src="./resources/img/Play.svg" alt="Play" />
+      <div class="flex_center">
+        <div id="game_container">
+          <div id="pause_container" class="pause_container">
+            <div class="img_container">
+              <img src="./resources/img/Pause.svg" alt="Pause" />
+            </div>
+            <br />
+            <p>Игра на паузе</p>
+            <br />
+            <p class="phrase" style="font-size: 13pt"></p>
+          </div>
+          <div id="death_container" class="death_container">
+            <div class="img_container">
+              <img src="./resources/img/Play.svg" alt="Play" />
+            </div>
+            <br />
+            <p id="last_count" style="text-align: center"></p>
+            <br />
+            <p class="phrase" style="font-size: 13pt"></p>
+          </div>
+          <canvas id="canvas" width="840" height="660"></canvas>
+          <br /><br /><br />
         </div>
-        <br />
-        <p id="last_count" style="text-align: center"></p>
-        <br />
-        <p class="phrase" style="font-size: 13pt"></p>
       </div>
-      <canvas id="canvas" width="840" height="660"></canvas>
-      <br /><br /><br />
-      <div id="keys">
+      <div id="keys" class="flex_right">
         <div style="font-size: 20pt">
           <div>Квадраты кушоть, треугольники не кушоть!</div>
-          <input type="checkbox" name="sound" id="sound_toggle" checked />
-          &nbsp; Включить звуки <br />
+
           <mark><q>Пробел</q></mark> - пауза/старт, <br />
           <mark><q>w a s d</q> </mark> или
           <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление.
