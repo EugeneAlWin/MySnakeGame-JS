@@ -21,7 +21,7 @@ let Movement,
   isPaused = false,
   isThorns = false;
 const EventSound = new Audio();
-EventSound.src = '../resources/sounds/Event.mp3';
+EventSound.src = './resources/sounds/Event.mp3';
 
 export { gameWidth, gameHeight, cubeWidth, cubeHeight };
 //#Configs
