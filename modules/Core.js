@@ -1,7 +1,8 @@
 import { Snake, Apple, SnakeOnStart, Thorns } from './components/MainObjs.js';
 import drawApple from './components/drawApple.js';
 import AppleCollision from './components/AppleCollision.js';
-import { context, classes, deathClasses, snakeColor } from '../index.js';
+import { context, classes, deathClasses } from '../index.js';
+import { snakeColor } from './components/Controllers/ColorChanger.js';
 import pause from './components/Pause.js';
 import { decrease } from './components/ChangeCounter.js';
 import phraseGenerator from './components/Phrase.js';

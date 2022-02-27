@@ -147,13 +147,13 @@ canvas {
     -webkit-appearance: none;
     margin-top: -14px;
   }
-  &:nth-child(1)::-webkit-slider-runnable-track {
+  &.red::-webkit-slider-runnable-track {
     background: linear-gradient(90deg, rgb(0, 0, 0), rgb(255, 0, 0));
   }
-  &:nth-child(2)::-webkit-slider-runnable-track {
+  &.green::-webkit-slider-runnable-track {
     background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 255, 0));
   }
-  &:nth-child(3)::-webkit-slider-runnable-track {
+  &.blue::-webkit-slider-runnable-track {
     background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 255));
   }
 }
