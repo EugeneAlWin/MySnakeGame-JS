@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   prev_count_container.innerText =
     BestCount > 0 ? `Лучший счёт: ${BestCount}` : '';
 });
+//let a = document.getElementsByClassName('wrapper')[0].classList;
 
 export function increase() {
   count++;

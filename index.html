@@ -14,6 +14,7 @@
     <style></style>
   </head>
   <body>
+    <script defer src="index.js" type="module"></script>
     <header>
       <div id="logo">
         <p>Snake Game JS</p>
@@ -23,7 +24,6 @@
         <p id="prev_counter"></p>
       </div>
     </header>
-    <script defer src="index.js" type="module"></script>
     <div class="flex">
       <div class="flex_left">
         <div id="sound_container">
@@ -34,33 +34,43 @@
           <div class="prop">
             <span>Выбрать цвет </span><mark class="plus">+</mark>
           </div>
-
-          <form name="switcher" class="a active">
-            <input
-              type="range"
-              min="0"
-              max="255"
-              name="a"
-              class="tmbs"
-              value="240"
-            />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              name="a"
-              class="tmbs"
-              value="0"
-            />
-            <input
-              type="range"
-              min="0"
-              max="255"
-              name="a"
-              class="tmbs"
-              value="0"
-            />
-          </form>
+          <div class="wrapper">
+            <form name="switcher" class="a active">
+              <input
+                type="range"
+                min="0"
+                max="255"
+                name="a"
+                class="tmbs"
+                value="240"
+              />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                name="a"
+                class="tmbs"
+                value="0"
+              />
+              <input
+                type="range"
+                min="0"
+                max="255"
+                name="a"
+                class="tmbs"
+                value="0"
+              />
+            </form>
+          </div>
+          <div class="prop">
+            <span>Выбрать карту </span><mark class="plus">+</mark>
+          </div>
+          <div class="wrapper">
+            <form name="changeMap" class="a active">
+              <input type="radio" value="minimal" name="map" checked /> Минимал
+              <input type="radio" value="standart" name="map" /> Трава
+            </form>
+          </div>
         </div>
       </div>
       <div class="flex_center">

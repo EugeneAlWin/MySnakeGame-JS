@@ -1,5 +1,5 @@
 import runGame from './modules/Core.js';
-
+import formController from './modules/components/FormController.js';
 const canvas = document.getElementById('canvas'),
   context = canvas.getContext('2d');
 let classes = document.getElementById('pause_container').classList,
@@ -33,5 +33,7 @@ export {
   phrase,
   snakeColor,
 };
+console.log(document.forms.changeMap.map.value);
 //console.log(obj.A);
+formController();
 runGame();
