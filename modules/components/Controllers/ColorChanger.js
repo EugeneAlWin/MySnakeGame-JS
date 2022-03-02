@@ -16,6 +16,8 @@ standartSkinRadio.addEventListener('change', () => {
     case 'standart1':
       snakeColor.head = StandartSkins.standart1.head;
       snakeColor.body = StandartSkins.standart1.body;
+      localStorage.setItem('HeadColor', snakeColor.head);
+      localStorage.setItem('BodyColor', snakeColor.body);
       break;
   }
 });
