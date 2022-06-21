@@ -1,24 +1,37 @@
-import runGame from './modules/Core.js';
-import FormController from './modules/components/FormController.js';
-const canvas = document.getElementById('canvas'),
-  context = canvas.getContext('2d');
-let classes = document.getElementById('pause_container').classList,
-  deathClasses = document.getElementById('death_container').classList;
-const count_container = document.getElementById('counter'),
-  prev_count_container = document.getElementById('prev_counter'),
-  last_count = document.getElementById('last_count');
-const phrase = document.querySelectorAll('.phrase');
+import Game from '/modules/game entities/Game.js';
+import Listeners from '/modules/listeners/Listeners.js';
 
-document.getElementById('pause_container').addEventListener('click', runGame);
-
-export {
-  context,
-  classes,
-  deathClasses,
-  count_container,
-  prev_count_container,
-  last_count,
-  phrase,
+const props = {
+  canvas: document.getElementById('canvas'),
+  bodyColorTumbs: document.forms['bodyColorSwitcher'].bodyColorTumb,
+  headColorTumbs: document.forms['headColorSwitcher'].headColorTumb,
+  speedTumb: document.forms['speedSwitcher'].speedTumb,
+  pauseContainer: document.getElementById('pause_container'),
+  deathContainer: document.getElementById('death_container'),
+  pauseClassList: document.getElementById('pause_container').classList,
+  deathClassList: document.getElementById('death_container').classList,
+  quotesContainer: document.querySelectorAll('.phrase'),
+  scoreContainer: document.getElementById('counter'),
+  lastScore: document.getElementById('last_count'),
+  bestScore: document.getElementById('prev_counter'),
+  soundSwitcher: document.forms.soundSwitcher['sound'],
+  keyEventSound: new Audio(
+    `./resources/sounds/${soundSwitcher['event'].value}`
+  ),
+  pickAppleSound: new Audio(
+    `./resources/sounds/${soundSwitcher['pickup'].value}`
+  ),
+  deathSound: new Audio(
+    `./resources/sounds/${soundSwitcher['gameover'].value}`
+  ),
+  formsPluses: [...document.getElementsByClassName('plus')],
+  wrappers: [...document.getElementsByClassName('wrapper')],
+  mapChangeRadios: [...document.forms.mapSwitcher.map],
 };
-FormController();
-runGame();
+const game = new Game(props);
+new Listeners(
+  props,
+  () => Game.world.snake.SetColor(),
+  (frequency) => Game.world.ReSetInterval(frequency),
+  (key) => game.SwitchDirection(key)
+);

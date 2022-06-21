@@ -1,0 +1,34 @@
+.tmbs {
+  -webkit-appearance: none;
+  margin: 6% auto;
+  width: 90%;
+  border-radius: 19px;
+  &::-webkit-slider-runnable-track {
+    height: 12px;
+    cursor: pointer;
+    border-radius: 19px;
+  }
+  &::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000;
+    border: 1px solid #000;
+    height: 35px;
+    width: 15px;
+    border-radius: 40%/20%;
+    background: #dbdada;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -14px;
+  }
+  &.red::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(255, 0, 0));
+  }
+  &.green::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 255, 0));
+  }
+  &.blue::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 255));
+  }
+  &.white::-webkit-slider-runnable-track {
+    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(255, 255, 255));
+  }
+}

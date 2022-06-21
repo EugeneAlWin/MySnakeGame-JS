@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import './scss/checkbox';
+@import './scss/scrollbar';
+@import './scss/slidertrack';
+@import './scss/animations';
 $gameWidth: 840px;
 $gameHeight: 660px;
 $pauseWidth: 320px;
@@ -16,22 +20,24 @@ $pauseHeight: 320px;
   align-items: center;
   justify-content: center;
 }
+
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  height: 100%;
   background: #3d3434;
   color: #ead8d8;
 }
 header {
   padding-top: 1%;
   padding-bottom: 1%;
-  height: 10vh;
+  height: 5%;
   @extend %flex-aljust-center;
+  justify-content: space-between !important;
 }
 #logo {
-  position: absolute;
+  position: relative;
   left: 3%;
   background: #7a7171;
   color: #f38282;
@@ -58,6 +64,10 @@ header {
     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
   }
 }
+#by {
+  width: 300px;
+  @extend %flex-aljust-center;
+}
 #game_container {
   @extend %game-field;
   z-index: 2;
@@ -67,20 +77,13 @@ canvas {
   border: 1px solid black;
   margin: auto;
   background: green;
-  background-size: cover;
+  background-size: cover !important;
   @extend %game-field;
-}
-@keyframes background_rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(1080deg);
-  }
-  100% {
-    transform: rotate(0deg);
+  &:hover {
+    cursor: none;
   }
 }
+
 .pause_container,
 .death_container {
   display: none;
@@ -93,13 +96,16 @@ canvas {
     flex-direction: column;
     background: #000;
     opacity: 0.7;
-    //cursor: pointer;
+    cursor: pointer;
     font: {
       size: 25pt;
       family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
     }
 
     .img_container {
+      img {
+        animation: foreground_rotation 20s infinite ease-in-out;
+      }
       &::before {
         content: ' ';
         @extend %pause-field;
@@ -126,71 +132,28 @@ canvas {
     width: 90%;
   }
 }
-.tmbs {
-  -webkit-appearance: none;
-  margin: 6% auto;
-  width: 90%;
-  border-radius: 19px;
-  &::-webkit-slider-runnable-track {
-    height: 12px;
-    cursor: pointer;
-    border-radius: 19px;
-  }
-  &::-webkit-slider-thumb {
-    box-shadow: 1px 1px 1px #000;
-    border: 1px solid #000;
-    height: 35px;
-    width: 15px;
-    border-radius: 40%/20%;
-    background: #dbdada;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: -14px;
-  }
-  &.red::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(255, 0, 0));
-  }
-  &.green::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 255, 0));
-  }
-  &.blue::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, rgb(0, 0, 0), rgb(0, 0, 255));
-  }
-}
 
 .flex {
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
   vertical-align: top;
-  height: 80vh;
+  height: 90%;
   .flex_center {
     width: $gameWidth;
+    flex: 2;
   }
   .flex_left {
+    width: 15%;
     flex: 1;
+    max-width: calc((100% - $gameWidth) / 2);
   }
   .flex_right {
+    width: 15%;
     display: flex;
     justify-content: center;
     flex: 1;
-  }
-}
-.a {
-  width: 70%;
-  display: none;
-  flex-flow: wrap;
-  height: 0;
-  transition: 0.6s;
-  background: #847e7e;
-  border-radius: 19px;
-  justify-content: center;
-  align-items: center;
-  transition: 0.6s;
-  &.active {
-    margin: 3% auto auto 19%;
-    display: flex !important;
-    height: unset;
+    max-width: calc((100% - $gameWidth) / 2);
   }
 }
 
@@ -201,77 +164,83 @@ canvas {
   justify-content: space-evenly;
   @extend %flex-aljust-center;
 }
-.switch-btn {
-  display: inline-block;
-  width: 72px; /* ширина */
-  height: 38px; /* высота */
-  border-radius: 19px; /* радиус скругления */
-  background: #bfbfbf; /* цвет фона */
-  z-index: 0;
-  margin: 0;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  transition-duration: 300ms; /* анимация */
-  &::after {
-    content: '';
-    height: 32px; /* высота кнопки */
-    width: 32px; /* ширина кнопки */
-    border-radius: 17px;
-    background: #fff; /* цвет кнопки */
-    top: 3px; /* положение кнопки по вертикали относительно основы */
-    left: 3px; /* положение кнопки по горизонтали относительно основы */
-    transition-duration: 300ms; /* анимация */
-    position: absolute;
-    z-index: 1;
-  }
-}
-.switch-on {
-  background: #118c4e;
-  &::after {
-    left: 37px;
-  }
-}
 
-.prop {
-  width: 70%;
-  margin: 2% auto;
-  align-items: center;
+#form_containers {
+  margin-top: 3%;
+  height: 70%;
   display: flex;
-  border-radius: 19px;
-  height: 66px;
-  justify-content: space-between;
-  padding: 0 5%;
-  background: #7a7171;
-  color: #ededed !important;
-  font-size: 25px;
-  .plus {
-    //position: relative;
-    margin-left: 3%;
-    background: #7a7171;
-    width: 35px;
-    height: 35px;
-    color: #ededed !important;
-    background: #564343;
-    border-radius: 9px;
-    @extend %flex-aljust-center;
-    cursor: pointer;
-  }
+  flex-direction: column;
 }
-
-@keyframes ar {
-  from {
-    height: 0;
-  }
-  to {
+#map_switcher_form {
+  display: block !important;
+  overflow: auto !important;
+}
+.prop {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  font-size: 18pt;
+  height: auto;
+  span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 66px;
+    padding: 2% 4%;
+    width: 100%;
+    background: #7a7171;
+    border-radius: 19px;
+    color: #ededed !important;
+    .plus {
+      background: #7a7171;
+      width: 35px;
+      height: 35px;
+      color: #ededed !important;
+      background: #564343;
+      border-radius: 9px;
+      cursor: pointer;
+      @extend %flex-aljust-center;
+    }
   }
 }
 .wrapper {
+  display: flex !important;
+  background: #847e7e;
+  flex-flow: wrap;
+  align-items: center;
+  width: 100%;
   height: 0;
+  padding: 0;
+  border-radius: 19px;
+  justify-content: center;
+  margin: 3% auto 3% auto;
+  transition: 0.8s;
   overflow: hidden;
-  transition: 1s;
-  &.active_wrapper {
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  &.active {
+    padding: 2% 4%;
     height: 200px;
   }
+}
+#sound_switcher_form {
+  display: block;
+  align-items: center;
+  overflow: auto;
+  .sound_items {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+#footer {
+  height: 5%;
 }
