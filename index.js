@@ -1,5 +1,5 @@
-import Game from '/modules/game entities/Game.js';
-import Listeners from '/modules/listeners/Listeners.js';
+import Game from './modules/game entities/Game.js';
+import Listeners from './modules/listeners/Listeners.js';
 
 const props = {
   canvas: document.getElementById('canvas'),
