@@ -8,6 +8,7 @@ const { src, dest, watch, series, parallel } = require('gulp'),
   terser = require('gulp-terser'),
   replace = require('gulp-replace'),
   fs = require('fs'),
+  deploy = require('gulp-gh-pages'),
   htmlmin = require('gulp-htmlmin');
 
 function clearAll() {
@@ -93,6 +94,9 @@ function observer() {
   );
   watch('app/resources/**/*', resourses).on('change', browserSync.reload);
 }
+function deployToGit() {
+  return src('build/**/*').pipe(deploy());
+}
 exports.build = series(
   clearAll,
   html,
@@ -101,4 +105,5 @@ exports.build = series(
   injectJS,
   delTemp
 );
+exports.deploy = series(this.build, deployToGit);
 exports.observer = series(this.build, observer);
