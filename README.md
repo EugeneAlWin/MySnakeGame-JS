@@ -4,7 +4,8 @@
 
 ---
 
-Now with Gulp!
+# Now with Gulp!
+
 Commands:
 `gulp build` - build the project
 `gulp observer` - start local server
