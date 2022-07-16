@@ -1,0 +1,203 @@
+@import '../templates/index_templates';
+#game_container {
+  @include game-field($gameWidth, $gameHeight);
+  z-index: 2;
+  margin: auto;
+  box-shadow: 0px 0px 30px 0px black;
+}
+canvas {
+  margin: auto;
+  background: green;
+  background-size: cover !important;
+  @include game-field($gameWidth, $gameHeight);
+  &:hover {
+    cursor: none;
+  }
+}
+
+.pause_container,
+.death_container {
+  display: none;
+  &.active {
+    @extend %flex-aljust-center;
+    position: absolute;
+    color: white;
+    @include game-field($gameWidth, $gameHeight);
+    flex-direction: column;
+    background: #000;
+    opacity: 0.7;
+    cursor: pointer;
+    font: {
+      size: $bigFont;
+    }
+
+    p {
+      @extend %flex-aljust-center;
+      margin: 0;
+    }
+  }
+}
+.img_container {
+  img {
+    animation: foreground_rotation 20s infinite ease-in-out;
+    @include pause-field($pauseWidth);
+  }
+  &::before {
+    content: ' ';
+    @include pause-field($pauseWidth);
+    position: absolute;
+    background: white;
+    border-radius: 33%;
+    animation: background_rotation 35s infinite ease-in-out;
+  }
+}
+.phrase {
+  font-size: $littleFont;
+}
+.pause_desc {
+  font-size: $middleFont;
+}
+
+@media screen and (max-width: 1060px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field($gameWidth_table, $gameHeight_table);
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_table);
+  }
+  .phrase {
+    font-size: $middleFont_tablet;
+    text-align: center;
+  }
+  .pause_desc {
+    font-size: $middleFont_tablet;
+  }
+}
+@media screen and (max-width: 860px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field($gameWidth_table_min, $gameHeight_table_min);
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_table_min);
+  }
+  .phrase,
+  .pause_desc {
+    text-align: center;
+    font-size: $littleFont_tablet + 2pt;
+  }
+}
+@media screen and (max-width: 570px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field($gameWidth_mobile, $gameHeight_mobile);
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_mobile);
+  }
+}
+@media screen and (max-width: 570px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field($gameWidth_mobile_min, $gameHeight_mobile_min);
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_mobile_min);
+  }
+  .br {
+    display: none;
+  }
+}
+@media screen and (max-width: 360px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field(
+      $gameWidth_mobile_super_min,
+      $gameHeight_mobile_super_min
+    );
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_mobile_super_min);
+  }
+  .pause_desc {
+    text-align: center;
+    font-size: $littleFont_mobile + 2pt;
+  }
+}
+@media screen and (max-height: 740px) {
+  .br {
+    display: none;
+  }
+}
+
+@media screen and (max-height: 610px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field($gameWidth_mobile, $gameHeight_mobile);
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_mobile);
+  }
+  .phrase,
+  .pause_desc {
+    font-size: $littleFont_tablet + 2pt;
+  }
+}
+
+@media screen and (max-height: 413px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field(
+      $gameWidth_mobile_min + 50px,
+      $gameHeight_mobile_min + 50px
+    );
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_mobile_min);
+  }
+}
+@media screen and (max-height: 385px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field($gameWidth_mobile_min, $gameHeight_mobile_min);
+  }
+}
+@media screen and (max-height: 320px) {
+  #game_container,
+  canvas,
+  .pause_container.active,
+  .death_container.active {
+    @include game-field(
+      $gameWidth_mobile_super_min,
+      $gameHeight_mobile_super_min
+    );
+  }
+  .img_container::before,
+  .img_container img {
+    @include pause-field($pauseWidth_mobile_super_min);
+  }
+}

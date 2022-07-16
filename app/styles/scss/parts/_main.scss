@@ -1,0 +1,33 @@
+@import '../templates/index_templates';
+@import './main-left';
+@import './main-right';
+@import './main-center';
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  gap: 2%;
+  .flex_center {
+    flex: 2;
+  }
+  .flex_left,
+  .flex_right {
+    flex: 1;
+  }
+}
+@media screen and (max-width: 1320px) {
+  .flex_center {
+    margin-right: 1%;
+    margin-bottom: 2%;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .flex_center {
+    margin-right: 0;
+    order: 1;
+  }
+  .flex_left {
+    order: 2;
+  }
+}

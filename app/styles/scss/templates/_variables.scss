@@ -1,0 +1,47 @@
+//font -------------------------------------------------
+$bigFont: 26pt;
+$middleFont: 18pt;
+$littleFont: 12pt;
+
+$bigFont_tablet: 22pt;
+$middleFont_tablet: 14pt;
+$littleFont_tablet: 8pt;
+
+$bigFont_mobile: 16pt;
+$middleFont_mobile: 10pt;
+$littleFont_mobile: 7pt;
+//game field -------------------------------------------------
+$gameWidth: 840px;
+$gameHeight: 660px;
+$pauseWidth: 320px;
+
+$gameWidth_table: calc($gameWidth - 200px);
+$gameHeight_table: calc($gameWidth_table / 1.272727);
+$pauseWidth_table: 180px;
+
+$gameWidth_table_min: calc($gameWidth - 300px);
+$gameHeight_table_min: calc($gameWidth_table_min / 1.272727);
+$pauseWidth_table_min: 150px;
+
+$gameWidth_mobile: calc($gameWidth - 400px);
+$gameHeight_mobile: calc($gameWidth_mobile / 1.272727);
+$pauseWidth_mobile: 120px;
+
+$gameWidth_mobile_min: calc($gameWidth - 500px);
+$gameHeight_mobile_min: calc($gameWidth_mobile_min / 1.272727);
+$pauseWidth_mobile_min: 120px;
+
+$gameWidth_mobile_super_min: calc($gameWidth - 550px);
+$gameHeight_mobile_super_min: calc($gameWidth_mobile_super_min / 1.272727);
+$pauseWidth_mobile_super_min: 100px;
+//checkbox -------------------------------------------------
+$checkboxMaxWidth: 60px;
+$checkboxHeight: 32px;
+$checkboxMaxHeight: $checkboxHeight + 10px;
+$circleDiameter: calc($checkboxMaxWidth / 2);
+$slideBarStrokeWidth: 1px;
+
+$checkboxMaxWidth_tablet: 40px;
+$checkboxHeight_tablet: 22px;
+$checkboxMaxHeight_tablet: $checkboxHeight_tablet + 10px;
+$circleDiameter_tablet: calc($checkboxMaxWidth_tablet / 2);

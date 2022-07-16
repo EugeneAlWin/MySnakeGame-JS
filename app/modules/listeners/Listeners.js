@@ -35,7 +35,14 @@ class Listeners {
     this.initMapChanger(props); ////save & set map
     this.initSoundSwitcher(props); //sound switcher
     this.initFormsWrapper(props); //forms' wrapper
-    this.initKeyboardListener(props); //keyboard listener
+
+    if (this.isMobile()) {
+      this.initTouchListener(props);
+      for (let i = 0; i < props.keyboardDiv.length; i++)
+        props.keyboardDiv[i].style = 'display: none';
+      props.screenDiv.style = 'display: block';
+      if (window.innerWidth < window.innerHeight) this.alertRotate();
+    } else this.initKeyboardListener(props); //keyboard listener
   }
   initONLoad(
     { bodyColorTumbs, headColorTumbs, speedTumb, mapChangeRadios, bestScore },
@@ -142,6 +149,35 @@ class Listeners {
       this.keyPressDispatcher(moveKeys, soundKeys, wrapKeys, e);
     });
   }
+  initTouchListener({ canvas }) {
+    let startPosX = null,
+      startPosY = null,
+      time = Date.now();
+    canvas.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      startPosX = e.touches[0].clientX;
+      startPosY = e.touches[0].clientY;
+      if (Date.now() - time < 200) {
+        debugger;
+        this.SwitchSnakeDirection('space');
+      }
+      time = Date.now();
+    });
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (Math.abs(startPosX - e.touches[0].clientX) > 30)
+        this.SwitchSnakeDirection(
+          startPosX > e.touches[0].clientX ? 'keya' : 'keyd'
+        );
+      if (Math.abs(startPosY - e.touches[0].clientY) > 30)
+        this.SwitchSnakeDirection(
+          startPosY > e.touches[0].clientY ? 'keyw' : 'keys'
+        );
+    });
+    canvas.addEventListener('touchend', (e) => {
+      startPosX = startPosY = null;
+    });
+  }
   //---------------------------------------------------------------------------------
   /**
    * @description The function toggles checkboxes. The first parameter is the checkbox itself or the key associated with the checkbox. If the first parameter is a key -- the second parameter is set to true
@@ -209,5 +245,14 @@ class Listeners {
     if (moveKeys) this.SwitchSnakeDirection(moveKeys[0]);
     else if (soundKeys) this.checkboxToggler(soundKeys[0], true);
     else if (wrapKeys) this.toggleActive(wrapKeys[0], true);
+  }
+
+  isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  }
+  alertRotate() {
+    alert('Рекомендую повернуть экран для удобства');
   }
 }

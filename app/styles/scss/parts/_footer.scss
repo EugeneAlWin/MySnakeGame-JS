@@ -1,0 +1,16 @@
+@import '../templates/index_templates';
+#footer {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  font-size: $littleFont;
+  display: none;
+}
+.forscreen {
+  display: none;
+}
+@media screen and (max-width: 1320px) {
+  #footer {
+    display: block;
+  }
+}

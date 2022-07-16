@@ -1,0 +1,130 @@
+@import '../templates/index_templates';
+#form_containers {
+  margin-top: 3%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+#map_switcher_form {
+  display: block !important;
+  overflow: auto !important;
+}
+.form_text {
+  text-align: center;
+}
+.prop {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  font-size: $middleFont;
+  height: auto;
+  span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 66px;
+    padding: 2% 4%;
+    width: 100%;
+    background: #7a7171;
+    border-radius: 19px;
+    color: #ededed !important;
+    .plus {
+      background: #7a7171;
+      min-width: 35px;
+      min-height: 35px;
+      color: #ededed !important;
+      background: #564343;
+      border-radius: 9px;
+      cursor: pointer;
+      @extend %flex-aljust-center;
+    }
+  }
+}
+.wrapper {
+  display: flex !important;
+  background: #847e7e;
+  flex-flow: wrap;
+  align-items: center;
+  width: 100%;
+  height: 0;
+  padding: 0;
+  border-radius: 19px;
+  justify-content: center;
+  margin: 3% auto 3% auto;
+  transition: 0.8s;
+  overflow: hidden;
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  &.active {
+    padding: 2% 4%;
+    height: 200px;
+  }
+}
+#sound_switcher_form {
+  display: block;
+  align-items: center;
+  overflow: auto;
+  .sound_items {
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .prop {
+    width: 90%;
+    font-size: $middleFont_tablet;
+    span.plus {
+      min-width: 30px;
+      min-height: 30px;
+    }
+  }
+  .wrapper {
+    form {
+      gap: 2%;
+    }
+  }
+}
+@media screen and (max-width: 740px) {
+  #form_containers {
+    width: 60%;
+    align-items: center;
+    margin: 0 auto;
+    min-width: 185px;
+  }
+  .prop {
+    align-items: center;
+    span {
+      height: 50px;
+    }
+  }
+  .wrapper {
+    &.active {
+      padding: 0;
+    }
+    form {
+      padding: 2%;
+      gap: 0;
+    }
+  }
+}
+@media screen and (max-width: 460px) {
+  #form_containers {
+    width: 90%;
+  }
+}
+
+@media screen and (max-height: 610px) {
+  .prop {
+    width: 80%;
+  }
+}

@@ -24,7 +24,10 @@ const props = {
   formsPluses: [...document.getElementsByClassName('plus')],
   wrappers: [...document.getElementsByClassName('wrapper')],
   mapChangeRadios: [...document.forms.mapSwitcher.map],
+  keyboardDiv: document.getElementsByClassName('forkeyboard'),
+  screenDiv: document.getElementsByClassName('forscreen')[0],
 };
+
 const game = new Game(props);
 new Listeners(
   props,

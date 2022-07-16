@@ -9,7 +9,8 @@ const { src, dest, watch, series, parallel } = require('gulp'),
   replace = require('gulp-replace'),
   fs = require('fs'),
   deploy = require('gulp-gh-pages'),
-  htmlmin = require('gulp-htmlmin');
+  sourcemaps = require('gulp-sourcemaps');
+htmlmin = require('gulp-htmlmin');
 
 function clearAll() {
   return del('build');
@@ -31,12 +32,10 @@ function prepareCSS() {
     )
     .pipe(csso())
     .pipe(concat('temp.css'))
+
     .pipe(dest('build/', { overwrite: true }));
 }
-//regexp for replace in index.html
 function injectCSS() {
-  //write regex that finds the <style> tag and replaces it with the content of the temp.css file
-
   return src('build/index.html')
     .pipe(
       replace(
@@ -72,7 +71,7 @@ function resourses() {
     .pipe(browserSync.stream());
 }
 function delTemp() {
-  return del('build/**/temp.*');
+  return del('build/**/temp.(css|js)');
 }
 function observer() {
   browserSync.init({
@@ -82,7 +81,7 @@ function observer() {
   });
   watch(
     'app/*.html',
-    series(html, parallel(prepareCSS, prepareJS), injectCSS, injectJS)
+    series(html, parallel(prepareCSS, prepareJS), injectCSS, injectJS, delTemp)
   ).on('change', browserSync.reload);
   watch('app/styles/**/*.scss', series(prepareCSS, injectCSS, delTemp)).on(
     'change',
@@ -105,5 +104,6 @@ exports.build = series(
   injectJS,
   delTemp
 );
+
 exports.deploy = series(this.build, deployToGit);
 exports.observer = series(this.build, observer);

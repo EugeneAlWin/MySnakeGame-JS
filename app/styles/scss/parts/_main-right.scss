@@ -1,0 +1,18 @@
+@import '../templates/index_templates';
+#keys {
+  text-align: center;
+  div {
+    width: 96%;
+    font-size: $middleFont;
+    text-align: left;
+  }
+}
+mark {
+  background-color: yellowgreen;
+}
+
+@media screen and (max-width: 1320px) {
+  #keys {
+    display: none;
+  }
+}

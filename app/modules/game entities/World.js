@@ -83,7 +83,7 @@ class World {
     this.lastScore.innerHTML = `Игра окончена! 
     Ваш счёт: ${this.score}.<br/> 
     Лучший счёт: ${tempScore} <br/>
-    Нажмите &#171;Ввод&#187;, чтобы начать сначала.`;
+    Нажмите на экран или &#171;Ввод&#187;, чтобы начать сначала.`;
     this.score = 0;
     this.scoreContainer.innerText = `Счёт: ${this.score}`;
   }

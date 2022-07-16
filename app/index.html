@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Классическая игра Змейка, написанная на чистом JavaScript."
+    />
     <link
       rel="shortcut icon"
-      href="./resources/img/Snake.png"
+      href="./resources/img/Snake.ico"
       type="image/x-icon"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,25 +18,28 @@
   </head>
   <body>
     <header>
-      <div id="logo">
-        <p>Snake Game JS</p>
+      <div class="header_div left">
+        <p id="logo">Snake Game JS</p>
       </div>
-      <div id="counter_container">
-        <p id="counter">Счёт: 0</p>
-        <p id="prev_counter"></p>
+      <div class="header_div center">
+        <div id="counter_container">
+          <p id="counter">Счёт: 0</p>
+          <p id="prev_counter"></p>
+        </div>
       </div>
-      <div id="by">
-        <p>@by Euge</p>
+      <div class="header_div right">
+        <a class="by" href="https://github.com/EugeneAlWin">@by EugeneAlWin</a>
       </div>
     </header>
-    <div class="flex">
+    <!--  -->
+    <main class="flex">
       <div class="flex_left">
         <div id="form_containers">
           <div class="prop">
             <span>Выбрать цвет тела <mark class="plus">+</mark></span>
             <div class="wrapper">
               <form name="bodyColorSwitcher">
-                <div style="text-align: center">Тяните ползунки:</div>
+                <div class="form_text">Тяните ползунки:</div>
                 <input
                   type="range"
                   min="0"
@@ -64,7 +71,7 @@
             <span>Выбрать цвет головы <mark class="plus">+</mark></span>
             <div class="wrapper">
               <form name="headColorSwitcher">
-                <div style="text-align: center">Тяните ползунки:</div>
+                <div class="form_text">Тяните ползунки:</div>
                 <input
                   type="range"
                   min="0"
@@ -96,7 +103,7 @@
             <span>Настроить скорость <mark class="plus">+</mark></span>
             <div class="wrapper">
               <form name="speedSwitcher">
-                <div style="text-align: center">Тяните ползунок:</div>
+                <div class="form_text">Тяните ползунок:</div>
                 <!-- smaller = faster -->
                 <input
                   type="range"
@@ -121,14 +128,14 @@
                   <label for="map">Трава</label>
                 </div>
                 <div>
-                  <input type="radio" value="HDgrass.jpg" name="map" />
+                  <input type="radio" value="HDgrass.webp" name="map" />
                   <label for="map">Трава HD</label>
                 </div>
                 <div>
                   <input type="radio" value="#f4a460" name="map" />
                   <label for="map">Песок</label>
                   <div>
-                    <input type="radio" value="HDsand.jpg" name="map" />
+                    <input type="radio" value="HDsand.webp" name="map" />
                     <label for="map">Песок HD</label>
                   </div>
                 </div>
@@ -137,7 +144,7 @@
                   <label for="map">Вода</label>
                 </div>
                 <div>
-                  <input type="radio" value="HDwater.jpg" name="map" />
+                  <input type="radio" value="HDwater.webp" name="map" />
                   <label for="map">Вода HD</label>
                 </div>
                 <div>
@@ -145,7 +152,7 @@
                   <label for="map">Лава</label>
                 </div>
                 <div>
-                  <input type="radio" value="HDlava.jpg" name="map" />
+                  <input type="radio" value="HDlava.webp" name="map" />
                   <label for="map">Лава HD</label>
                 </div>
               </form>
@@ -214,30 +221,31 @@
             <div class="img_container">
               <img src="./resources/img/Pause.svg" alt="Pause" />
             </div>
-            <br />
-            <p style="font-size: 17pt">
-              Игра на паузе. Нажмите &#171;Пробел&#187;, чтобы продолжить.
+            <br class="br" />
+            <p class="pause_desc">
+              Игра на паузе. Нажмите на экран или &#171;Пробел&#187;, чтобы
+              продолжить.
             </p>
-            <br />
-            <p class="phrase" style="font-size: 13pt"></p>
+            <br class="br" />
+            <p class="phrase"></p>
           </div>
           <div id="death_container" class="death_container active">
             <div class="img_container">
               <img src="./resources/img/Play.svg" alt="Play" />
             </div>
-            <br />
-            <p id="last_count" style="text-align: center; font-size: 17pt">
-              Нажмите &#171;Ввод&#187;, чтобы начать.
+            <br class="br" />
+            <p id="last_count" class="pause_desc">
+              Нажмите на экран или &#171;Ввод&#187;, чтобы начать.
             </p>
-            <br />
-            <p class="phrase" style="font-size: 13pt"></p>
+            <br class="br" />
+            <p class="phrase"></p>
           </div>
           <canvas id="canvas" width="840" height="660"></canvas>
           <br /><br /><br />
         </div>
       </div>
-      <div id="keys" class="flex_right">
-        <div style="font-size: 20pt; text-align: left">
+      <div id="keys" class="flex_right forkeyboard">
+        <div>
           <p>Кушать круги!</p>
           <mark><q>Пробел</q></mark> - пауза. <br />
           <mark><q>Ввод</q></mark> - старт. <br />
@@ -248,14 +256,27 @@
           <mark> <q>K</q></mark> - вкл./выкл. звук роста<br />
           <mark> <q>L</q></mark> - вкл./выкл. звук проигрыша<br />
           <mark> <q>1/2/3/4/5</q></mark> - свернуть/развернуть форму<br />
-          <p style="font-size: 12pt">
-            <mark style="background-color: red">Если</mark> при первом запуске
-            карта не видна - выберите карту (проблема совместимости версий)
-          </p>
         </div>
       </div>
-    </div>
-    <footer id="footer"></footer>
+    </main>
+    <footer id="footer">
+      <div class="forkeyboard">
+        <p>Кушать круги!</p>
+        <mark><q>Пробел</q></mark> - пауза. <mark><q>Ввод</q></mark> - старт.
+        <mark><q>w a s d</q> </mark> или
+        <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление.
+        <mark> <q>H</q></mark> - вкл./выкл. звук. <mark> <q>J</q></mark> -
+        вкл./выкл. звук кнопок. <mark> <q>K</q></mark> - вкл./выкл. звук роста.
+        <mark> <q>L</q></mark> - вкл./выкл. звук проигрыша.
+        <mark> <q>1/2/3/4/5</q></mark> - свернуть/развернуть форму.
+      </div>
+      <div class="forscreen">
+        <p>Кушать круги!</p>
+        <mark><q>Свайп влево/вправо/вверх/вниз</q></mark> - управление.
+        <mark><q>Нажатие</q></mark> - старт.
+        <mark><q>Двойное нажатие</q> - пауза </mark>
+      </div>
+    </footer>
     <script></script>
   </body>
 </html>
