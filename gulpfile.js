@@ -1,109 +1,51 @@
-const { src, dest, watch, series, parallel } = require('gulp'),
-  sass = require('gulp-sass')(require('sass')),
-  autoprefixer = require('gulp-autoprefixer'),
-  del = require('del'),
-  browserSync = require('browser-sync').create(),
-  concat = require('gulp-concat'),
-  csso = require('gulp-csso'),
-  terser = require('gulp-terser'),
-  replace = require('gulp-replace'),
-  fs = require('fs'),
-  deploy = require('gulp-gh-pages'),
-  sourcemaps = require('gulp-sourcemaps');
-htmlmin = require('gulp-htmlmin');
-
-function clearAll() {
-  return del('build');
-}
-function html() {
-  return src('app/*.html')
-    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
-    .pipe(concat('index.html'))
-    .pipe(dest('build/', { overwrite: true }))
-    .pipe(browserSync.stream());
-}
-function prepareCSS() {
-  return src('app/styles/*.scss')
-    .pipe(sass())
-    .pipe(
-      autoprefixer({
-        overrideBrowserslist: ['last 5 versions'],
-      })
-    )
-    .pipe(csso())
-    .pipe(concat('temp.css'))
-
-    .pipe(dest('build/', { overwrite: true }));
-}
-function injectCSS() {
-  return src('build/index.html')
-    .pipe(
-      replace(
-        /<style>.*<\/style>/,
-        '<style>' + fs.readFileSync('build/temp.css') + '</style>'
-      )
-    )
-    .pipe(dest('build/', { overwrite: true }))
-    .pipe(browserSync.stream());
-}
-function prepareJS() {
-  return src(['app/modules/*/*.js', 'app/modules/index.js'])
-    .pipe(concat('temp.js'))
-    .pipe(terser({ toplevel: true }))
-    .pipe(dest('build/'));
-}
-function injectJS() {
-  return src('build/index.html')
-    .pipe(
-      replace(
-        /<script>.*<\/script>/,
-        '<script>' + fs.readFileSync('build/temp.js') + '</script>'
-      )
-    )
-    .pipe(dest('build/'))
-    .pipe(browserSync.stream());
-}
-
-function resourses() {
-  del('build/resources');
-  return src('app/resources/**/*')
-    .pipe(dest('build/resources'))
-    .pipe(browserSync.stream());
-}
-function delTemp() {
-  return del('build/**/temp.(css|js)');
-}
-function observer() {
+import gulp from 'gulp';
+import { clearAll, clearResources } from './gulp/tasks/clear.js';
+const { src, dest, watch, series, parallel, task } = gulp;
+import { html } from './gulp/tasks/html.js';
+import { js } from './gulp/tasks/js.js';
+import { resources } from './gulp/tasks/resources.js';
+import { scss } from './gulp/tasks/scss.js';
+import BrowserSync from 'browser-sync';
+import ghPages from 'gulp-gh-pages';
+import {
+  scssDir,
+  buildDir,
+  jsDir,
+  resourceDir,
+  htmlDir,
+} from './gulp/config/path.js';
+const browserSync = BrowserSync.create();
+task('html', html);
+task('scss', scss);
+task('clearAll', clearAll);
+task('clearResources', clearResources);
+task('resources', resources);
+task('js', js);
+task('observer', () => {
   browserSync.init({
     server: {
-      baseDir: 'build/',
+      baseDir: `${buildDir}`,
     },
   });
-  watch(
-    'app/*.html',
-    series(html, parallel(prepareCSS, prepareJS), injectCSS, injectJS, delTemp)
-  ).on('change', browserSync.reload);
-  watch('app/styles/**/*.scss', series(prepareCSS, injectCSS, delTemp)).on(
+  watch(`${htmlDir}`, series(html, parallel(scss, js))).on(
     'change',
     browserSync.reload
   );
-  watch('app/modules/**/*.js', series(prepareJS, injectJS, delTemp)).on(
+  watch(`${scssDir}**/*.scss`, scss).on('change', browserSync.reload);
+  watch(`${jsDir}**/*.js`, js).on('change', browserSync.reload);
+  watch(`${resourceDir}**/*`, series(clearResources, resources)).on(
     'change',
     browserSync.reload
   );
-  watch('app/resources/**/*', resourses).on('change', browserSync.reload);
-}
-function deployToGit() {
-  return src('build/**/*').pipe(deploy());
-}
-exports.build = series(
-  clearAll,
-  html,
-  parallel(prepareCSS, prepareJS, resourses),
-  injectCSS,
-  injectJS,
-  delTemp
+});
+task('build', series(clearAll, html, scss, js, resources, 'observer'));
+task(
+  'deploy',
+  series('build', () => {
+    return src(`${buildDir}**/*`).pipe(
+      ghPages({
+        message: 'Update',
+      })
+    );
+  })
 );
-
-exports.deploy = series(this.build, deployToGit);
-exports.observer = series(this.build, observer);

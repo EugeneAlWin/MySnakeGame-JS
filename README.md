@@ -1,15 +1,15 @@
 # Snake Game JS
 
-## Version 1.1.0
+## Version 1.1.1
 
 ---
 
 # Now with Gulp!
 
 Commands:
-`gulp build` - build the project
-`gulp observer` - start local server
-`gulp deploy` - deploy project
+`npm run dev` - start dev server.
+`npm run build` - build project for prod.
+`npm run deploy` - deploy project.
 
 ---
 
@@ -27,7 +27,6 @@ Snake Game JS - open-source проект. Это значит, что отсюд
 
 ## Спасибо всем, кто предлагал идеи <3
 
-Теперь наконец-то могу пойти подкачаться.
 Ниже будет всё то же самое, только на английском. Я же типа умный, а все типа умные пишут на английском.
 
 ---
@@ -44,4 +43,4 @@ The game was made with great love and interest. And quite a bit on do not care.
 Snake Game JS is an open source project. This means that from here you can take everything and absolutely free.
 Modification of the project by people interested is also approved.
 
-## Sincerely, @EugeneAlWin.
+# Sincerely, @EugeneAlWin.
