@@ -1,4 +1,6 @@
-class Wolf {
+import { QuotesGenerator } from './functions/quotesGenerator.js';
+export default class Wolf {
+  static quotesGenerator = QuotesGenerator;
   static quotes = [
     { text: `Главное не то, что было будет, а то, что будет было` },
     { text: `Сначала потом, затем снова опять` },
@@ -16,6 +18,7 @@ class Wolf {
     { text: 'Тебя зовут по имени, но я зову тебя пить пиво.' },
     { text: 'Если тебе тяжело идти, значит ты жирный.' },
     { text: 'Сделал дело — дело сделано.' },
+    { text: 'Работа не волк.' },
     { text: 'У батареек есть один минус, и один плюс…' },
     {
       text: 'Легкой бывает только легкая дорога. Тяжелая дорога всегда трудна.',
@@ -33,6 +36,4 @@ class Wolf {
       text: 'За двумя зайцами погонишься — рыбку из пруда не выловишь, делу время, а отмеришь семь раз…',
     },
   ];
-  static quotesGenerator = () =>
-    this.quotes[MathClass.getRandomInt(this.quotes.length)].text;
 }

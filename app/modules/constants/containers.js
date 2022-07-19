@@ -1,0 +1,13 @@
+export const canvas = document.getElementById('canvas'),
+  pauseContainer = document.getElementById('pause_container'),
+  deathContainer = document.getElementById('death_container'),
+  pauseClassList = document.getElementById('pause_container').classList,
+  deathClassList = document.getElementById('death_container').classList,
+  scoreContainer = document.getElementById('counter'),
+  lastScore = document.getElementById('last_count'),
+  bestScore = document.getElementById('prev_counter'),
+  formsPluses = [...document.getElementsByClassName('plus')],
+  wrappers = [...document.getElementsByClassName('wrapper')],
+  keyboardDiv = document.getElementsByClassName('forkeyboard'),
+  screenDiv = document.getElementsByClassName('forscreen')[0],
+  quotesContainer = document.querySelectorAll('.phrase');
