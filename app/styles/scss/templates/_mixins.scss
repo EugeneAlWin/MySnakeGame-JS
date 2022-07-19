@@ -20,7 +20,7 @@
   &::after {
     width: $circleDiameter;
     height: $circleDiameter;
-    top: calc(51% - $circleDiameter / 2 + $slideBarStrokeWidth);
+    top: calc(50% - $circleDiameter / 2 + $slideBarStrokeWidth);
   }
   &::before {
     height: $checkboxHeight;

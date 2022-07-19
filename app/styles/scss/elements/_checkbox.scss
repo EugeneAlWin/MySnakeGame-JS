@@ -17,7 +17,7 @@
   &::after {
     content: 'OFF';
     @extend %flex-aljust-center;
-    display: block;
+    display: flex;
     visibility: visible;
     background: #fff;
     border-radius: 50%;
@@ -28,7 +28,7 @@
   }
   &::before {
     content: '';
-    display: block;
+    display: flex;
     visibility: visible;
     width: 100%;
     background: #7b6b6b;
