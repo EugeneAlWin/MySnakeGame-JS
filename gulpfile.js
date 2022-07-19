@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 import { clearAll, clearResources } from './gulp/tasks/clear.js';
-const { src, dest, watch, series, parallel, task } = gulp;
+const { src, watch, series, parallel, task } = gulp;
 import { html } from './gulp/tasks/html.js';
 import { js } from './gulp/tasks/js.js';
 import { resources } from './gulp/tasks/resources.js';
@@ -14,6 +14,7 @@ import {
   resourceDir,
   htmlDir,
 } from './gulp/config/path.js';
+
 const browserSync = BrowserSync.create();
 task('html', html);
 task('scss', scss);
@@ -27,16 +28,11 @@ task('observer', () => {
       baseDir: `${buildDir}`,
     },
   });
-  watch(`${htmlDir}`, series(html, parallel(scss, js))).on(
-    'change',
-    browserSync.reload
-  );
-  watch(`${scssDir}**/*.scss`, scss).on('change', browserSync.reload);
-  watch(`${jsDir}**/*.js`, js).on('change', browserSync.reload);
-  watch(`${resourceDir}**/*`, series(clearResources, resources)).on(
-    'change',
-    browserSync.reload
-  );
+  watch(`${htmlDir}`, series(html, parallel(scss, js)));
+  watch(`${scssDir}**/*.scss`, scss);
+  watch(`${jsDir}**/*.js`, js);
+  watch(`${resourceDir}**/*`, series(clearResources, resources));
+  watch(`${buildDir}**/*`).on('change', browserSync.reload);
 });
 task('build', series(clearAll, html, scss, js, resources, 'observer'));
 task(
