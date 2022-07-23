@@ -17,8 +17,6 @@ header {
 #logo {
   text-shadow: 1px 1px 1px #000;
   position: relative;
-  background: #7a7171;
-  color: #00cc00;
   font-size: $bigFont;
   height: 60px;
   width: 300px;
@@ -43,7 +41,7 @@ header {
   font-size: $middleFont;
   text-decoration: none;
   transition: 2s;
-  color: #ead8d8;
+  color: inherit;
   &:hover {
     font-size: $middleFont + 1pt;
     font-style: italic;

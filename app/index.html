@@ -16,10 +16,10 @@
     <title>Snake JS</title>
     <style></style>
   </head>
-  <body>
+  <body class="body body_default">
     <header>
       <div class="header_div left">
-        <p id="logo">Snake Game JS</p>
+        <p id="logo" class="logo logo_default">Snake Game JS</p>
       </div>
       <div class="header_div center">
         <div id="counter_container">
@@ -36,8 +36,10 @@
       <div class="flex_left">
         <div id="form_containers">
           <div class="prop">
-            <span>Выбрать цвет тела <mark class="plus">+</mark></span>
-            <div class="wrapper">
+            <span class="wrap_span span_default"
+              >Выбрать цвет тела <mark class="plus plus_default">+</mark></span
+            >
+            <div class="wrapper wrapper_default">
               <form name="bodyColorSwitcher">
                 <div class="form_text">Тяните ползунки:</div>
                 <input
@@ -68,8 +70,11 @@
             </div>
           </div>
           <div class="prop">
-            <span>Выбрать цвет головы <mark class="plus">+</mark></span>
-            <div class="wrapper">
+            <span class="wrap_span span_default"
+              >Выбрать цвет головы
+              <mark class="plus plus_default">+</mark></span
+            >
+            <div class="wrapper wrapper_default">
               <form name="headColorSwitcher">
                 <div class="form_text">Тяните ползунки:</div>
                 <input
@@ -100,25 +105,10 @@
             </div>
           </div>
           <div class="prop">
-            <span>Настроить скорость <mark class="plus">+</mark></span>
-            <div class="wrapper">
-              <form name="speedSwitcher">
-                <div class="form_text">Тяните ползунок:</div>
-                <!-- smaller = faster -->
-                <input
-                  type="range"
-                  min="100"
-                  max="300"
-                  name="speedTumb"
-                  class="tmbs white"
-                  value="200"
-                />
-              </form>
-            </div>
-          </div>
-          <div class="prop">
-            <span>Выбрать карту <mark class="plus">+</mark></span>
-            <div class="wrapper">
+            <span class="wrap_span span_default"
+              >Выбрать карту <mark class="plus plus_default">+</mark></span
+            >
+            <div class="wrapper wrapper_default">
               <form id="map_switcher_form" name="mapSwitcher">
                 <!-- values ​​must be in hex or contain only name of map with extension
                   important: pics must be in ./resources/img/maps/
@@ -174,9 +164,73 @@
               </form>
             </div>
           </div>
+          <!-- HUD -->
           <div class="prop">
-            <span>Настроить звук <mark class="plus">+</mark></span>
-            <div class="wrapper">
+            <span class="wrap_span span_default"
+              >Выбрать цвет HUD <mark class="plus plus_default">+</mark></span
+            >
+            <div class="wrapper wrapper_default">
+              <form id="hud_switcher_form" name="HUDSwitcher">
+                <div>
+                  <input type="radio" value="default" name="hud" checked />
+                  <label for="hud">Стандартная</label>
+                </div>
+                <div>
+                  <input type="radio" value="light" name="hud" />
+                  <label for="hud">Светлая тема</label>
+                </div>
+                <div>
+                  <input type="radio" value="dark" name="hud" />
+                  <label for="hud">Темная тема</label>
+                </div>
+                <div>
+                  <input type="radio" value="white" name="hud" />
+                  <label for="hud">Солнечный свет</label>
+                </div>
+                <div>
+                  <input type="radio" value="black" name="hud" />
+                  <label for="hud">1619—1865</label>
+                </div>
+                <div>
+                  <input type="radio" value="green" name="hud" />
+                  <label for="hud">Кислотная фабрика</label>
+                </div>
+                <div>
+                  <input type="radio" value="punk" name="hud" />
+                  <label for="hud">Дорогой киберпанк</label>
+                </div>
+                <div>
+                  <input type="radio" value="punk-reverse" name="hud" />
+                  <label for="hud">Дешевый киберпанк</label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- HUD -->
+          <div class="prop">
+            <span class="wrap_span span_default"
+              >Настроить скорость <mark class="plus plus_default">+</mark></span
+            >
+            <div class="wrapper wrapper_default">
+              <form name="speedSwitcher">
+                <div class="form_text">Тяните ползунок:</div>
+                <!-- smaller = faster -->
+                <input
+                  type="range"
+                  min="100"
+                  max="300"
+                  name="speedTumb"
+                  class="tmbs white"
+                  value="200"
+                />
+              </form>
+            </div>
+          </div>
+          <div class="prop">
+            <span class="wrap_span span_default"
+              >Настроить звук <mark class="plus plus_default">+</mark></span
+            >
+            <div class="wrapper wrapper_default">
               <form name="soundSwitcher" id="sound_switcher_form">
                 <!-- values (except first) ​​must contain only name of sound with extension
                   first value must be 'full'
@@ -186,7 +240,7 @@
                   <div>Все звуки &nbsp;</div>
                   <input
                     id="sound_full"
-                    class="sound on"
+                    class="sound on on_default"
                     type="checkbox"
                     name="sound"
                     value="full"
@@ -194,10 +248,10 @@
                   />
                 </div>
                 <div class="sound_items">
-                  <div>Нажатие клавиш &nbsp;</div>
+                  <div>Действие &nbsp;</div>
                   <input
                     id="event"
-                    class="sound on"
+                    class="sound on on_default"
                     type="checkbox"
                     name="sound"
                     value="Event.mp3"
@@ -208,7 +262,7 @@
                   <div>Рост змейки &nbsp;</div>
                   <input
                     id="pickup"
-                    class="sound on"
+                    class="sound on on_default"
                     type="checkbox"
                     name="sound"
                     value="PickUp.mp3"
@@ -219,7 +273,7 @@
                   <div>Конец игры &nbsp;</div>
                   <input
                     id="gameover"
-                    class="sound on"
+                    class="sound on on_default"
                     type="checkbox"
                     name="sound"
                     value="GameOver.mp3"
@@ -263,34 +317,51 @@
       <div id="keys" class="flex_right forkeyboard">
         <div>
           <p>Кушать круги!</p>
-          <mark><q>Пробел</q></mark> - пауза. <br />
-          <mark><q>Ввод</q></mark> - старт. <br />
-          <mark><q>w a s d</q> </mark> или
-          <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление. <br />
-          <mark> <q>H</q></mark> - вкл./выкл. звук<br />
-          <mark> <q>J</q></mark> - вкл./выкл. звук кнопок<br />
-          <mark> <q>K</q></mark> - вкл./выкл. звук роста<br />
-          <mark> <q>L</q></mark> - вкл./выкл. звук проигрыша<br />
-          <mark> <q>1/2/3/4/5</q></mark> - свернуть/развернуть форму<br />
+          <mark class="mark mark_default"><q>Пробел</q></mark> - пауза. <br />
+          <mark class="mark mark_default"><q>Ввод</q></mark> - старт. <br />
+          <mark class="mark mark_default"><q>w a s d</q> </mark> или
+          <mark class="mark mark_default"
+            ><q> &uarr; &larr; &darr; &rarr; </q></mark
+          >
+          - управление. <br />
+          <mark class="mark mark_default"> <q>H</q></mark> - вкл./выкл. звук<br />
+          <mark class="mark mark_default"> <q>J</q></mark> - вкл./выкл. звук
+          кнопок<br />
+          <mark class="mark mark_default"> <q>K</q></mark> - вкл./выкл. звук
+          роста<br />
+          <mark class="mark mark_default"> <q>L</q></mark> - вкл./выкл. звук
+          проигрыша<br />
+          <mark class="mark mark_default"> <q>1/2/3/4/5</q></mark> -
+          свернуть/развернуть форму<br />
         </div>
       </div>
     </main>
     <footer id="footer">
       <div class="forkeyboard">
         <p>Кушать круги!</p>
-        <mark><q>Пробел</q></mark> - пауза. <mark><q>Ввод</q></mark> - старт.
-        <mark><q>w a s d</q> </mark> или
-        <mark><q> &uarr; &larr; &darr; &rarr; </q></mark> - управление.
-        <mark> <q>H</q></mark> - вкл./выкл. звук. <mark> <q>J</q></mark> -
-        вкл./выкл. звук кнопок. <mark> <q>K</q></mark> - вкл./выкл. звук роста.
-        <mark> <q>L</q></mark> - вкл./выкл. звук проигрыша.
-        <mark> <q>1/2/3/4/5</q></mark> - свернуть/развернуть форму.
+        <mark class="mark mark_default"><q>Пробел</q></mark> - пауза.
+        <mark class="mark mark_default"><q>Ввод</q></mark> - старт.
+        <mark class="mark mark_default"><q>w a s d</q> </mark> или
+        <mark class="mark mark_default"
+          ><q> &uarr; &larr; &darr; &rarr; </q></mark
+        >
+        - управление. <mark class="mark mark_default"> <q>H</q></mark> -
+        вкл./выкл. звук. <mark class="mark mark_default"> <q>J</q></mark> -
+        вкл./выкл. звук кнопок.
+        <mark class="mark mark_default"> <q>K</q></mark> - вкл./выкл. звук
+        роста. <mark class="mark mark_default"> <q>L</q></mark> - вкл./выкл.
+        звук проигрыша.
+        <mark class="mark mark_default"> <q>1/2/3/4/5</q></mark> -
+        свернуть/развернуть форму.
       </div>
       <div class="forscreen">
         <p>Кушать круги!</p>
-        <mark><q>Свайп влево/вправо/вверх/вниз</q></mark> - управление.
-        <mark><q>Нажатие</q></mark> - старт.
-        <mark><q>Двойное нажатие</q> - пауза </mark>
+        <mark class="mark mark_default"
+          ><q>Свайп влево/вправо/вверх/вниз</q></mark
+        >
+        - управление. <mark class="mark mark_default"><q>Нажатие</q></mark> -
+        старт.
+        <mark class="mark mark_default"><q>Двойное нажатие</q> - пауза </mark>
       </div>
     </footer>
     <script></script>

@@ -1,0 +1,21 @@
+.body_dark,
+.plus_dark {
+  color: white;
+  background: rgb(29, 28, 28);
+}
+.logo_dark {
+  color: white;
+  background: rgb(82, 79, 79);
+}
+.span_dark,
+.wrapper_dark {
+  background: rgb(82, 79, 79);
+}
+.mark_dark {
+  background-color: deeppink;
+}
+.on_dark {
+  &::before {
+    background: deeppink;
+  }
+}

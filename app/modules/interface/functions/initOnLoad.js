@@ -4,10 +4,12 @@ import {
   mapChangeRadios,
   speedTumb,
   soundSwitcher,
+  HUDChangeRadios,
 } from '../../constants/forms.js';
 import { bestScore, canvas } from '../../constants/containers.js';
 import { toggleAudioCheckbox } from '../helpers/toggleAudioCheckbox.js';
 import { speedLimit } from '../../constants/values.js';
+import { switchHUD } from '../helpers/switchHUD.js';
 export function InitOnLoad() {
   document.addEventListener('DOMContentLoaded', () => {
     bestScore.innerText = `Лучший счёт: ${localStorage.getItem('prev') || 0}`;
@@ -33,9 +35,14 @@ export function InitOnLoad() {
     this.worldInstance.ResetInterval(speedLimit - +speedTumb.value);
 
     //set map
-    mapChangeRadios.forEach((r) => {
-      r.checked = canvasBackground.includes(r.value);
-    });
+    mapChangeRadios.forEach(
+      (r) => (r.checked = canvasBackground.includes(r.value))
+    );
+
+    //set HUD
+    this.currentHUD = localStorage.getItem('HUD') ?? 'default';
+    HUDChangeRadios.forEach((r) => (r.checked = r.value === this.currentHUD));
+    switchHUD('default', this.currentHUD);
 
     //set sound switcher
     const obj = JSON.parse(localStorage.getItem('SoundSwitchers'));

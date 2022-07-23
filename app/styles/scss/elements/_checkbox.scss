@@ -41,15 +41,10 @@
     &::after {
       content: 'ON';
     }
-    &::before {
-      background: #118c4e;
-    }
   }
   &.disabled {
     cursor: default;
-    &::after {
-      background: #ecdddd;
-    }
+    &::after,
     &::before {
       background: #ecdddd;
     }

@@ -1,0 +1,22 @@
+.body_default,
+.plus_default {
+  color: #ead8d8;
+  background: #3d3434;
+}
+.logo_default {
+  color: #00cc00;
+  background: #7a7171;
+}
+.span_default,
+.wrapper_default {
+  background: #7a7171;
+}
+
+.mark_default {
+  background-color: yellowgreen;
+}
+.on_default {
+  &::before {
+    background: #118c4e;
+  }
+}

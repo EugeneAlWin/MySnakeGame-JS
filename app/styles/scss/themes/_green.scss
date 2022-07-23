@@ -1,0 +1,21 @@
+.body_green,
+.plus_green {
+  color: #ead8d8;
+  background: #1d721d;
+}
+.logo_green {
+  color: #06ff06;
+  background: #1e9c1e;
+}
+.span_green,
+.wrapper_green {
+  background: #1e9c1e;
+}
+.mark_green {
+  background-color: orangered;
+}
+.on_green {
+  &::before {
+    background: red;
+  }
+}

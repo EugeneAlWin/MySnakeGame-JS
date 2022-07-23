@@ -10,7 +10,7 @@ export function InitEventListeners() {
   this.InitMapChanger(); ////save & set map
   this.InitSoundSwitcher(); //sound switcher
   this.InitFormsWrapper(); //forms' wrapper
-
+  this.InitHUDChanger(); //HUD switcher
   if (isMobileChecker()) {
     this.InitTouchListener(); //screen touch listener
     for (let i = 0; i < keyboardDiv.length; i++)

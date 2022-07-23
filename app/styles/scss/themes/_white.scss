@@ -1,0 +1,21 @@
+.body_white,
+.plus_white {
+  color: black;
+  background: white;
+}
+.logo_white {
+  color: black;
+  background: rgb(211, 211, 211);
+}
+.span_white,
+.wrapper_white {
+  background: rgb(201, 201, 201);
+}
+.mark_white {
+  background-color: darkorange;
+}
+.on_white {
+  &::before {
+    background: darkorange;
+  }
+}

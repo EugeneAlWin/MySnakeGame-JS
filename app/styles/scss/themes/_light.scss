@@ -1,0 +1,21 @@
+.body_light,
+.plus_light {
+  color: rgb(24, 22, 22);
+  background: rgb(214, 202, 202);
+}
+.logo_light {
+  color: rgb(37, 35, 35);
+  background: rgb(148, 139, 139);
+}
+.span_light,
+.wrapper_light {
+  background: rgb(148, 139, 139);
+}
+.mark_light {
+  background-color: greenyellow;
+}
+.on_light {
+  &::before {
+    background: yellowgreen;
+  }
+}

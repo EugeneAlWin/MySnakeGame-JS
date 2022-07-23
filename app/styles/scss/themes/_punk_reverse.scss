@@ -1,0 +1,25 @@
+.body_punk-reverse,
+.plus_punk-reverse {
+  color: whitesmoke;
+  background: darkblue;
+}
+.logo_punk-reverse {
+  color: whitesmoke;
+  background: deeppink;
+}
+.span_punk-reverse,
+.wrapper_punk-reverse {
+  background: deeppink;
+}
+.mark_punk-reverse {
+  background-color: greenyellow;
+}
+.on_punk-reverse {
+  &::after {
+    color: whitesmoke;
+    background: darkblue;
+  }
+  &::before {
+    background: violet;
+  }
+}

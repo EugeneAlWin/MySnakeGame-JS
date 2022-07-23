@@ -1,0 +1,25 @@
+.body_punk,
+.plus_punk {
+  color: cyan;
+  background: deeppink;
+}
+.logo_punk {
+  color: cyan;
+  background: darkblue;
+}
+.span_punk,
+.wrapper_punk {
+  background: darkblue;
+}
+.mark_punk {
+  background-color: yellowgreen;
+}
+.on_punk {
+  &::after {
+    color: cyan;
+    background: deeppink;
+  }
+  &::before {
+    background: violet;
+  }
+}

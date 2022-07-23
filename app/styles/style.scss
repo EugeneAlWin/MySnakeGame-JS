@@ -1,6 +1,7 @@
 @import './scss/animations/index_animations';
 @import './scss/parts/index_parts';
 @import './scss/elements/index_elements';
+@import './scss/themes/index_themes';
 @font-face {
   font-family: 'Roboto';
   src: local('Roboto'),
@@ -18,7 +19,7 @@ body {
   height: 100%;
   max-width: 1920px;
   max-height: 1080px;
-  background: #3d3434;
-  color: #ead8d8;
+  // background: #3d3434;
+  // color: red;
   cursor: default;
 }

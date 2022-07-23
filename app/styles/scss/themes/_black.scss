@@ -1,0 +1,21 @@
+.body_black,
+.plus_black {
+  color: white;
+  background: black;
+}
+.logo_black {
+  color: white;
+  background: black;
+}
+.span_black,
+.wrapper_black {
+  background: rgb(37, 37, 37);
+}
+.mark_black {
+  background-color: orange;
+}
+.on_black {
+  &::before {
+    background: darkred;
+  }
+}
