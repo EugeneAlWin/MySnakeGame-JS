@@ -34,10 +34,11 @@ task('observer', () => {
   watch(`${resourceDir}**/*`, series(clearResources, resources));
   watch(`${buildDir}**/*`).on('change', browserSync.reload);
 });
-task('build', series(clearAll, html, scss, js, resources, 'observer'));
+task('dev', series(clearAll, html, scss, js, resources, 'observer'));
+task('build', series(clearAll, html, scss, js, resources));
 task(
   'deploy',
-  series('build', () => {
+  series(() => {
     return src(`${buildDir}**/*`).pipe(
       ghPages({
         message: 'Update',
