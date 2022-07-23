@@ -38,7 +38,7 @@ task('dev', series(clearAll, html, scss, js, resources, 'observer'));
 task('build', series(clearAll, html, scss, js, resources));
 task(
   'deploy',
-  series(() => {
+  series('build', () => {
     return src(`${buildDir}**/*`).pipe(
       ghPages({
         message: 'Update',
