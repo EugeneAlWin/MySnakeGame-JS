@@ -146,22 +146,22 @@ canvas {
   }
 }
 
-@media screen and (max-height: 610px) {
-  #game_container,
-  canvas,
-  .pause_container.active,
-  .death_container.active {
-    @include game-field($gameWidth_mobile, $gameHeight_mobile);
-  }
-  .img_container::before,
-  .img_container img {
-    @include pause-field($pauseWidth_mobile);
-  }
-  .phrase,
-  .pause_desc {
-    font-size: $littleFont_tablet + 2pt;
-  }
-}
+// @media screen and (max-height: 610px) {
+//   #game_container,
+//   canvas,
+//   .pause_container.active,
+//   .death_container.active {
+//     @include game-field($gameWidth_mobile, $gameHeight_mobile);
+//   }
+//   .img_container::before,
+//   .img_container img {
+//     @include pause-field($pauseWidth_mobile);
+//   }
+//   .phrase,
+//   .pause_desc {
+//     font-size: $littleFont_tablet + 2pt;
+//   }
+// }
 
 @media screen and (max-height: 413px) {
   #game_container,
